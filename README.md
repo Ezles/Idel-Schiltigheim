@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cabinet Infirmier de Hautepierre
 
-## Getting Started
+![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)
+![Next.js](https://img.shields.io/badge/Next.js-15.0.3-black)
+![React](https://img.shields.io/badge/React-19.0.0-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
 
-First, run the development server:
+Site web professionnel pour le Cabinet Infirmier de Hautepierre, offrant des informations sur les services de soins infirmiers, les coordonnées et un formulaire de contact.
+
+## 🌟 Fonctionnalités
+
+- ✅ Design moderne et responsive
+- ✅ Animations fluides avec Framer Motion
+- ✅ Mode clair/sombre
+- ✅ Formulaire de contact interactif
+- ✅ Pages légales complètes
+- ✅ Optimisé pour le SEO
+- ✅ Performances optimisées
+
+## 🚀 Technologies
+
+- **Framework**: [Next.js 15](https://nextjs.org/)
+- **UI**: [React 19](https://react.dev/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Composants UI**: [shadcn/ui](https://ui.shadcn.com/)
+- **Icônes**: [Heroicons](https://heroicons.com/)
+- **Tests**: [Jest](https://jestjs.io/) & [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- **CI/CD**: GitHub Actions
+- **Package Manager**: [Bun](https://bun.sh/)
+
+## 📋 Structure du projet
+
+```
+idel-hautepierre/
+├── app/                  # Pages et routes Next.js
+├── components/           # Composants React réutilisables
+├── hooks/                # Hooks React personnalisés
+├── lib/                  # Utilitaires et fonctions
+├── public/               # Fichiers statiques
+├── __tests__/            # Tests unitaires et d'intégration
+└── ...                   # Fichiers de configuration
+```
+
+## 🛠️ Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+# Installation en une commande
+./setup.sh
+
+# OU étapes manuelles:
+
+# 1. Cloner le dépôt
+git clone https://github.com/votre-repo/idel-hautepierre.git
+cd idel-hautepierre
+
+# 2. Installer les dépendances
+bun install
+
+# 3. Lancer le serveur de développement
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🧪 Tests
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Exécuter les tests unitaires
+bun test
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Exécuter les tests avec surveillance des modifications
+bun test:watch
 
-## Learn More
+# Générer un rapport de couverture
+bun test:coverage
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🚢 Déploiement
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Le site est automatiquement déployé sur Vercel à chaque push sur la branche `main`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Site web**: [https://idel-hautepierre.vercel.app](https://idel-hautepierre.vercel.app)
 
-## Deploy on Vercel
+## 🔄 CI/CD
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Le projet utilise GitHub Actions pour l'intégration et le déploiement continus. Le workflow est défini dans le fichier `.github/workflows/ci.yml`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Configuration du déploiement
+
+Pour configurer le déploiement sur Vercel, vous devez définir les secrets suivants dans votre dépôt GitHub :
+
+- `VERCEL_TOKEN` : Token d'API Vercel
+- `VERCEL_ORG_ID` : ID de l'organisation Vercel
+- `VERCEL_PROJECT_ID` : ID du projet Vercel pour l'application
+
+### Étapes du workflow CI/CD
+
+1. **Lint** : Vérifie la qualité du code avec ESLint
+2. **Test** : Exécute les tests unitaires et génère les rapports de couverture
+3. **Build** : Compile l'application
+4. **Deploy** : Déploie l'application sur Vercel (uniquement pour la branche `main`)
+
+## 📝 Licence
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+## 📞 Contact
+
+- **Email**: contact@cabinet-hautepierre.fr
+- **Téléphone**: 03 88 00 00 00
