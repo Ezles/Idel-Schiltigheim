@@ -49,11 +49,11 @@ const Navbar = () => {
               <motion.img
                 src="/images/logo_cabinet_schiltigheim.png"
                 alt="Logo Cabinet Infirmier Schiltigheim"
-                className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
+                className="h-7 w-auto transition-transform duration-300 group-hover:scale-105 sm:h-8"
                 whileHover={{ rotate: [0, -5, 5, 0] }}
                 transition={{ duration: 0.5 }}
               />
-              <span className="ml-2 text-xl font-semibold text-gray-800 dark:text-gray-100">
+              <span className="ml-2 text-base font-semibold text-gray-800 dark:text-gray-100 sm:text-xl whitespace-nowrap">
                 Cabinet Infirmier
               </span>
             </Link>

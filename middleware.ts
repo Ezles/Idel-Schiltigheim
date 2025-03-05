@@ -11,14 +11,22 @@ const LOGIN_PATH = `${ADMIN_ROUTE_PREFIX}/login`;
 const REDIRECT_PATH = `${ADMIN_ROUTE_PREFIX}/redirect`;
 
 export async function middleware(request: NextRequest) {
-  // Forcer HTTPS
+  // Autoriser l'accès aux fichiers de validation de certificat
+  if (
+    request.nextUrl.pathname.startsWith("/.well-known/pki-validation") ||
+    request.nextUrl.pathname.startsWith("/.well-known/ssl-check.txt")
+  ) {
+    return NextResponse.next();
+  }
+
+  // Forcer HTTPS avec une redirection 301 (permanente)
   if (
     process.env.NODE_ENV === "production" &&
     !request.nextUrl.protocol.includes("https")
   ) {
-    const httpsUrl = request.nextUrl.clone();
+    const httpsUrl = new URL(request.url);
     httpsUrl.protocol = "https:";
-    return NextResponse.redirect(httpsUrl);
+    return NextResponse.redirect(httpsUrl, 301);
   }
 
   if (request.nextUrl.pathname.startsWith(ADMIN_ROUTE_PREFIX)) {
@@ -105,7 +113,16 @@ export async function middleware(request: NextRequest) {
   }
 
   // Pour les autres routes, continuer normalement
-  return NextResponse.next();
+  const response = NextResponse.next();
+  
+  // Ajouter des en-têtes de sécurité à toutes les réponses
+  response.headers.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
+  response.headers.set("X-Content-Type-Options", "nosniff");
+  response.headers.set("X-Frame-Options", "DENY");
+  response.headers.set("X-XSS-Protection", "1; mode=block");
+  response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  
+  return response;
 }
 
 // Configurer les routes sur lesquelles le middleware doit s'exécuter

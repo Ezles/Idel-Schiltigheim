@@ -14,6 +14,24 @@ const nextConfig = {
   async headers() {
     return [
       {
+        source: '/.well-known/pki-validation/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, must-revalidate',
+          },
+        ],
+      },
+      {
+        source: '/.well-known/ssl-check.txt',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, must-revalidate',
+          },
+        ],
+      },
+      {
         source: '/:path*',
         headers: [
           {
