@@ -3,8 +3,8 @@
 import FooterSection from "@/components/footer-section";
 import Navbar from "@/components/navbar-form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export default function PolitiqueConfidentialiteContent() {
   const [isMounted, setIsMounted] = useState(false);
@@ -17,22 +17,22 @@ export default function PolitiqueConfidentialiteContent() {
     return (
       <>
         <Navbar />
-        <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-          <div className="mb-8 sm:mb-12">
-            <h1 className="text-xl sm:text-2xl font-light mb-2 text-gray-900 dark:text-gray-100">
-              Politique de Confidentialité
+        <main className="max-w-3xl mx-auto px-6 py-12 pt-32">
+          <div className="mb-12">
+            <h1 className="text-2xl font-light mb-2 text-gray-900 dark:text-gray-100">
+              Politique de <span className="text-gray-900 dark:text-gray-100 font-medium">Confidentialité</span>
             </h1>
-            <div className="h-px w-20 bg-gray-300 mb-4 sm:mb-6"></div>
+            <div className="h-px w-20 bg-blue-500 mb-6"></div>
             <p className="text-gray-600 dark:text-gray-300 text-sm">
-              Cette politique de confidentialité décrit comment nous collectons,
-              utilisons et protégeons vos informations personnelles.
+              Informations concernant la collecte et le traitement de vos données
+              personnelles.
             </p>
           </div>
 
-          <div className="space-y-4 sm:space-y-6">
+          <div className="space-y-6">
             {/* Cards without animations */}
             {[
-              "Collecte des informations",
+              "Collecte d'informations",
               "Utilisation des informations",
               "Protection des informations",
               "Cookies",
@@ -63,46 +63,45 @@ export default function PolitiqueConfidentialiteContent() {
   return (
     <>
       <Navbar />
-      <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        <motion.div
-          className="mb-8 sm:mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+      <main className="max-w-3xl mx-auto px-6 py-12 pt-32">
+        <motion.div 
+          className="mb-12"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-xl sm:text-2xl font-light mb-2 text-gray-900 dark:text-gray-100">
-            Politique de Confidentialité
+          <h1 className="text-2xl font-light mb-2 text-gray-900 dark:text-gray-100">
+            Politique de <span className="text-gray-900 dark:text-gray-100 font-medium">Confidentialité</span>
           </h1>
-          <div className="h-px w-20 bg-gray-300 mb-4 sm:mb-6"></div>
+          <div className="h-px w-20 bg-blue-500 mb-6"></div>
           <p className="text-gray-600 dark:text-gray-300 text-sm">
-            Cette politique de confidentialité décrit comment nous collectons,
-            utilisons et protégeons vos informations personnelles.
+            Informations concernant la collecte et le traitement de vos données
+            personnelles.
           </p>
         </motion.div>
 
-        <motion.div
-          className="space-y-4 sm:space-y-6"
+        <motion.div 
+          className="space-y-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <Card className="border-0 shadow-sm bg-white dark:bg-gray-800 overflow-hidden transition-all duration-300">
+          <Card className="border-0 shadow-sm bg-white dark:bg-gray-800 overflow-hidden transition-all duration-300 hover:shadow-md">
             <CardHeader className="pb-2 border-b border-gray-100 dark:border-gray-700">
               <CardTitle className="text-sm uppercase tracking-wider font-medium text-gray-500 dark:text-gray-400">
-                Collecte des informations
+                Collecte d&apos;informations
               </CardTitle>
             </CardHeader>
             <CardContent className="text-sm text-gray-600 dark:text-gray-300 pt-4">
               <p>
-                Le Cabinet Infirmier de Schiltigheim collecte des informations
-                lorsque vous utilisez notre formulaire de contact. Les
-                informations recueillies incluent votre nom, adresse e-mail et
-                numéro de téléphone.
+                Nous collectons des informations lorsque vous remplissez notre
+                formulaire de contact. Les informations collectées incluent votre
+                nom, votre adresse e-mail et votre numéro de téléphone.
               </p>
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-sm bg-white dark:bg-gray-800 overflow-hidden transition-all duration-300">
+          <Card className="border-0 shadow-sm bg-white dark:bg-gray-800 overflow-hidden transition-all duration-300 hover:shadow-md">
             <CardHeader className="pb-2 border-b border-gray-100 dark:border-gray-700">
               <CardTitle className="text-sm uppercase tracking-wider font-medium text-gray-500 dark:text-gray-400">
                 Utilisation des informations
@@ -117,7 +116,7 @@ export default function PolitiqueConfidentialiteContent() {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-sm bg-white dark:bg-gray-800 overflow-hidden transition-all duration-300">
+          <Card className="border-0 shadow-sm bg-white dark:bg-gray-800 overflow-hidden transition-all duration-300 hover:shadow-md">
             <CardHeader className="pb-2 border-b border-gray-100 dark:border-gray-700">
               <CardTitle className="text-sm uppercase tracking-wider font-medium text-gray-500 dark:text-gray-400">
                 Protection des informations
@@ -133,7 +132,7 @@ export default function PolitiqueConfidentialiteContent() {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-sm bg-white dark:bg-gray-800 overflow-hidden transition-all duration-300">
+          <Card className="border-0 shadow-sm bg-white dark:bg-gray-800 overflow-hidden transition-all duration-300 hover:shadow-md">
             <CardHeader className="pb-2 border-b border-gray-100 dark:border-gray-700">
               <CardTitle className="text-sm uppercase tracking-wider font-medium text-gray-500 dark:text-gray-400">
                 Cookies
@@ -155,7 +154,7 @@ export default function PolitiqueConfidentialiteContent() {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-sm bg-white dark:bg-gray-800 overflow-hidden transition-all duration-300">
+          <Card className="border-0 shadow-sm bg-white dark:bg-gray-800 overflow-hidden transition-all duration-300 hover:shadow-md">
             <CardHeader className="pb-2 border-b border-gray-100 dark:border-gray-700">
               <CardTitle className="text-sm uppercase tracking-wider font-medium text-gray-500 dark:text-gray-400">
                 Consentement
@@ -169,7 +168,7 @@ export default function PolitiqueConfidentialiteContent() {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-sm bg-white dark:bg-gray-800 overflow-hidden transition-all duration-300">
+          <Card className="border-0 shadow-sm bg-white dark:bg-gray-800 overflow-hidden transition-all duration-300 hover:shadow-md">
             <CardHeader className="pb-2 border-b border-gray-100 dark:border-gray-700">
               <CardTitle className="text-sm uppercase tracking-wider font-medium text-gray-500 dark:text-gray-400">
                 Vos droits

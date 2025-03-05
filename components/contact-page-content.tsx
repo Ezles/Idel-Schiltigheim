@@ -102,7 +102,7 @@ export default function ContactPageContent() {
   return (
     <>
       <Navbar />
-      <main className="max-w-7xl mx-auto px-6 py-12 sm:px-12 lg:px-16 relative">
+      <main className="max-w-7xl mx-auto px-6 py-12 pt-28 md:pt-32 sm:px-12 lg:px-16 relative">
         <AnimatePresence>
           {isSubmitting && (
             <motion.div
@@ -123,32 +123,10 @@ export default function ContactPageContent() {
                   {!showSuccessOverlay ? (
                     <>
                       <div className="flex justify-center mb-4">
-                        <motion.div
-                          animate={{
-                            y: [0, -10, 0],
-                            rotate: [0, 10, 0, -10, 0],
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            repeatType: "loop",
-                          }}
-                          className="relative"
-                        >
+                        <div className="relative">
                           <PaperAirplaneIcon className="h-16 w-16 text-blue-500" />
-                          <motion.div
-                            animate={{
-                              scale: [1, 1.2, 1],
-                              opacity: [0.5, 1, 0.5],
-                            }}
-                            transition={{
-                              duration: 1.5,
-                              repeat: Infinity,
-                              repeatType: "loop",
-                            }}
-                            className="absolute -bottom-2 -left-2 w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full -z-10"
-                          />
-                        </motion.div>
+                          <div className="absolute -bottom-2 -left-2 w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full -z-10" />
+                        </div>
                       </div>
                       <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">
                         Envoi en cours...
@@ -158,47 +136,21 @@ export default function ContactPageContent() {
                         patienter un instant.
                       </p>
                       <div className="mt-4 flex justify-center">
-                        <motion.div
-                          animate={{
-                            scale: [1, 1.2, 1],
-                          }}
-                          transition={{
-                            duration: 1,
-                            repeat: Infinity,
-                            repeatType: "loop",
-                          }}
-                          className="flex space-x-2"
-                        >
+                        <div className="flex space-x-2">
                           <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                           <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                           <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        </motion.div>
+                        </div>
                       </div>
                     </>
                   ) : (
                     <>
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ duration: 0.5, type: "spring" }}
-                        className="flex justify-center mb-4"
-                      >
-                        <motion.div
-                          animate={{ rotate: [0, 10, 0] }}
-                          transition={{ duration: 0.5, type: "tween" }}
-                          className="relative"
-                        >
+                      <div className="flex justify-center mb-4">
+                        <div className="relative">
                           <CheckCircleIcon className="h-16 w-16 text-green-500" />
-                          <motion.div
-                            animate={{
-                              scale: [1, 1.5],
-                              opacity: [0.5, 0],
-                            }}
-                            transition={{ duration: 1.5 }}
-                            className="absolute inset-0 w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full -z-10"
-                          />
-                        </motion.div>
-                      </motion.div>
+                          <div className="absolute inset-0 w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full -z-10" />
+                        </div>
+                      </div>
                       <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">
                         Message envoyé !
                       </h3>
@@ -220,30 +172,23 @@ export default function ContactPageContent() {
           )}
         </AnimatePresence>
 
-        <motion.div
-          className="mb-12 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5 }}
-        >
+        <div className="mb-12 text-center">
           <h1 className="text-3xl font-bold mb-2 text-gray-900 dark:text-gray-100">
             Contactez-nous
           </h1>
-          <div className="h-1 w-20 bg-gray-300 mx-auto mb-6"></div>
+          <div className="h-1 w-20 bg-blue-500 mx-auto mb-6"></div>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Besoin de prendre rendez-vous ou d&apos;obtenir des informations sur
             nos services ? Contactez-nous par téléphone ou envoyez-nous un
             message via le formulaire ci-dessous.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
           >
             <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-200">
               Envoyez-nous un message
@@ -349,23 +294,18 @@ export default function ContactPageContent() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className="bg-gray-50 dark:bg-gray-800 p-8 rounded-lg"
           >
             <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-200">
               Informations de contact
             </h2>
             <div className="space-y-6">
-              <motion.div
-                className="flex items-start"
-                whileHover={{ x: 5 }}
-                transition={{ duration: 0.2 }}
-              >
+              <div className="flex items-start hover:translate-x-1 transition-transform duration-200">
                 <div className="bg-white dark:bg-gray-700 p-3 rounded-full mr-4 shadow-sm">
-                  <PhoneIcon className="h-6 w-6 text-gray-600 dark:text-gray-300" />
+                  <PhoneIcon className="h-6 w-6 text-blue-500 dark:text-blue-400" />
                 </div>
                 <div>
                   <h3 className="text-lg font-medium text-gray-800 dark:text-gray-200">
@@ -378,15 +318,11 @@ export default function ContactPageContent() {
                     Du lundi au vendredi, 8h-19h
                   </p>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                className="flex items-start"
-                whileHover={{ x: 5 }}
-                transition={{ duration: 0.2 }}
-              >
+              <div className="flex items-start hover:translate-x-1 transition-transform duration-200">
                 <div className="bg-white dark:bg-gray-700 p-3 rounded-full mr-4 shadow-sm">
-                  <EnvelopeIcon className="h-6 w-6 text-gray-600 dark:text-gray-300" />
+                  <EnvelopeIcon className="h-6 w-6 text-blue-500 dark:text-blue-400" />
                 </div>
                 <div>
                   <h3 className="text-lg font-medium text-gray-800 dark:text-gray-200">
@@ -399,15 +335,11 @@ export default function ContactPageContent() {
                     Nous répondons sous 24-48h
                   </p>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                className="flex items-start"
-                whileHover={{ x: 5 }}
-                transition={{ duration: 0.2 }}
-              >
+              <div className="flex items-start hover:translate-x-1 transition-transform duration-200">
                 <div className="bg-white dark:bg-gray-700 p-3 rounded-full mr-4 shadow-sm">
-                  <MapPinIcon className="h-6 w-6 text-gray-600 dark:text-gray-300" />
+                  <MapPinIcon className="h-6 w-6 text-blue-500 dark:text-blue-400" />
                 </div>
                 <div>
                   <h3 className="text-lg font-medium text-gray-800 dark:text-gray-200">
@@ -421,7 +353,7 @@ export default function ContactPageContent() {
                     67300 Schiltigheim
                   </p>
                 </div>
-              </motion.div>
+              </div>
             </div>
 
             <div className="mt-10">
