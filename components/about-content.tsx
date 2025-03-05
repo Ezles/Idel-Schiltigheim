@@ -1,6 +1,5 @@
 "use client";
 
-
 import FooterSection from "@/components/footer-section";
 import Navbar from "@/components/navbar-form";
 import { Card, CardContent } from "@/components/ui/card";
@@ -55,9 +54,9 @@ export default function AboutContent() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
                   <div className="p-8">
                     <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                      Fondé en 2015, notre cabinet infirmier situé à Hautepierre
-                      est composé d&apos;une équipe de professionnels qualifiés
-                      et passionnés par leur métier.
+                      Fondé en 2015, notre cabinet infirmier situé à
+                      Schiltigheim est composé d&apos;une équipe de
+                      professionnels qualifiés et passionnés par leur métier.
                     </p>
                     <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
                       Nous intervenons aussi bien à notre cabinet qu&apos;à
@@ -211,7 +210,7 @@ export default function AboutContent() {
           <div className="w-20 h-1 bg-gray-400 mb-8"></div>
 
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
+            className="flex justify-center"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -221,6 +220,7 @@ export default function AboutContent() {
               variants={fadeInUp}
               whileHover={{ y: -8 }}
               transition={{ duration: 0.3 }}
+              className="w-full max-w-xs"
             >
               <Card className="border-gray-200 dark:border-gray-800 hover:shadow-md transition-shadow duration-300 p-6 text-center">
                 <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
@@ -244,81 +244,10 @@ export default function AboutContent() {
                   </div>
                 </div>
                 <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
-                  Marie Laurent
+                  Marina Rivière
                 </h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                  Infirmière DE
-                </p>
-              </Card>
-            </motion.div>
-
-            <motion.div
-              variants={fadeInUp}
-              whileHover={{ y: -8 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Card className="border-gray-200 dark:border-gray-800 hover:shadow-md transition-shadow duration-300 p-6 text-center">
-                <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-                  <div className="flex items-center justify-center h-full text-gray-400">
-                    <motion.svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-10 h-10"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                      />
-                    </motion.svg>
-                  </div>
-                </div>
-                <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
-                  Thomas Dubois
-                </h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                  Infirmier DE
-                </p>
-              </Card>
-            </motion.div>
-
-            <motion.div
-              variants={fadeInUp}
-              whileHover={{ y: -8 }}
-              transition={{ duration: 0.3 }}
-              className="sm:col-span-2 md:col-span-1"
-            >
-              <Card className="border-gray-200 dark:border-gray-800 hover:shadow-md transition-shadow duration-300 p-6 text-center">
-                <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-                  <div className="flex items-center justify-center h-full text-gray-400">
-                    <motion.svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-10 h-10"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                      />
-                    </motion.svg>
-                  </div>
-                </div>
-                <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
-                  Sophie Martin
-                </h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                  Infirmière DE
+                  Infirmière en Chef
                 </p>
               </Card>
             </motion.div>

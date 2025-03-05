@@ -20,7 +20,7 @@ const HeroLanding = () => {
         <div className="flex-1 space-y-6">
           <div>
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              Cabinet Infirmier de Hautepierre
+              Cabinet Infirmier de Schiltigheim
             </h1>
             <p className="text-gray-600 dark:text-gray-300 text-lg mb-8">
               Des soins infirmiers professionnels et attentionnés, à domicile ou
@@ -28,7 +28,7 @@ const HeroLanding = () => {
             </p>
           </div>
           <div className="flex flex-wrap gap-4">
-            <Link href="tel:+33388000000">
+            <Link href="tel:+33766720766">
               <Button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white rounded-md flex items-center gap-2 shadow-md hover:shadow-lg transition-all duration-300">
                 <PhoneIcon className="h-4 w-4" />
                 <span>Appeler</span>
@@ -55,7 +55,7 @@ const HeroLanding = () => {
         </div>
         <div className="flex-1 flex justify-center">
           <Image
-            src="/DALL·E-Landing-Ilustration.png"
+            src="/images/logo_cabinet_schiltigheim.png"
             alt="Soins infirmiers professionnels"
             width={500}
             height={500}
@@ -81,14 +81,17 @@ const HeroLanding = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5, delay: 0.1 }}
+          className="flex items-center gap-4"
         >
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-            Cabinet Infirmier de Hautepierre
-          </h1>
-          <p className="text-gray-600 dark:text-gray-300 text-lg mb-8">
-            Des soins infirmiers professionnels et attentionnés, à domicile ou
-            au cabinet. Notre équipe est à votre service 7j/7.
-          </p>
+          <div>
+            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+              Cabinet Infirmier de Schiltigheim
+            </h1>
+            <p className="text-gray-600 dark:text-gray-300 text-lg mb-8">
+              Des soins infirmiers professionnels et attentionnés, à domicile ou
+              au cabinet. Notre équipe est à votre service 7j/7.
+            </p>
+          </div>
         </motion.div>
 
         <motion.div
@@ -99,7 +102,7 @@ const HeroLanding = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Link href="tel:+33388000000">
+            <Link href="tel:+33766720766">
               <Button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white rounded-md flex items-center gap-2 shadow-md hover:shadow-lg transition-all duration-300">
                 <PhoneIcon className="h-4 w-4" />
                 <span>Appeler</span>
@@ -139,7 +142,7 @@ const HeroLanding = () => {
       >
         <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
           <Image
-            src="/DALL·E-Landing-Ilustration.png"
+            src="/images/logo_cabinet_schiltigheim.png"
             alt="Soins infirmiers professionnels"
             width={500}
             height={500}

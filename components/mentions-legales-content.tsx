@@ -1,6 +1,5 @@
 "use client";
 
-
 import FooterSection from "@/components/footer-section";
 import Navbar from "@/components/navbar-form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -26,7 +25,7 @@ export default function MentionsLegalesContent() {
             <div className="h-px w-20 bg-gray-300 mb-6"></div>
             <p className="text-gray-600 dark:text-gray-300 text-sm">
               Informations légales concernant le Cabinet Infirmier de
-              Hautepierre et l&apos;utilisation de ce site web.
+              Schiltigheim et l&apos;utilisation de ce site web.
             </p>
           </div>
 
@@ -76,7 +75,7 @@ export default function MentionsLegalesContent() {
           </h1>
           <div className="h-px w-20 bg-gray-300 mb-6"></div>
           <p className="text-gray-600 dark:text-gray-300 text-sm">
-            Informations légales concernant le Cabinet Infirmier de Hautepierre
+            Informations légales concernant le Cabinet Infirmier de Schiltigheim
             et l&apos;utilisation de ce site web.
           </p>
         </motion.div>
@@ -107,15 +106,15 @@ export default function MentionsLegalesContent() {
               </CardHeader>
               <CardContent className="text-sm text-gray-600 dark:text-gray-300 pt-4">
                 <p>
-                  <strong>Cabinet Infirmier de Hautepierre</strong>
+                  <strong>Cabinet Infirmier de Schiltigheim</strong>
                   <br />
-                  1 Place André Maurois
+                  130 route de Bischwiller
                   <br />
-                  67200 Strasbourg
+                  67300 Schiltigheim
                   <br />
-                  Téléphone : 03 88 00 00 00
+                  Téléphone : 07 66 72 07 66
                   <br />
-                  SIRET : 000 000 000 00000
+                  SIRET : 514 183 185 00040
                 </p>
               </CardContent>
             </Card>
@@ -201,12 +200,12 @@ export default function MentionsLegalesContent() {
               </CardHeader>
               <CardContent className="text-sm text-gray-600 dark:text-gray-300 pt-4">
                 <p>
-                  Le Cabinet Infirmier de Hautepierre s&apos;efforce
+                  Le Cabinet Infirmier de Schiltigheim s&apos;efforce
                   d&apos;assurer l&apos;exactitude et la mise à jour des
                   informations diffusées sur ce site. Toutefois, il ne peut
                   garantir l&apos;exactitude, la précision ou
                   l&apos;exhaustivité des informations mises à disposition sur
-                  ce site. En conséquence, le Cabinet Infirmier de Hautepierre
+                  ce site. En conséquence, le Cabinet Infirmier de Schiltigheim
                   décline toute responsabilité pour les éventuelles
                   imprécisions, inexactitudes ou omissions portant sur des
                   informations disponibles sur ce site.

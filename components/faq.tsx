@@ -1,6 +1,5 @@
 "use client";
 
-
 import {
   Accordion,
   AccordionContent,
@@ -77,8 +76,8 @@ export default function FAQ() {
                     Comment prendre rendez-vous avec un infirmier ?
                   </AccordionTrigger>
                   <AccordionContent className="text-gray-600 dark:text-gray-300 text-sm pb-4">
-                    Vous pouvez prendre rendez-vous par téléphone au 06 65 28 48
-                    32 ou en utilisant notre formulaire de contact. Nous vous
+                    Vous pouvez prendre rendez-vous par téléphone au 07 66 72 07
+                    66 ou en utilisant notre formulaire de contact. Nous vous
                     répondrons dans les plus brefs délais pour convenir
                     d&apos;un rendez-vous adapté à vos besoins.
                   </AccordionContent>
@@ -118,7 +117,7 @@ export default function FAQ() {
                   </AccordionTrigger>
                   <AccordionContent className="text-gray-600 dark:text-gray-300 text-sm pb-4">
                     Oui, nous proposons des soins à domicile dans tout le
-                    quartier de Hautepierre et ses environs. N&apos;hésitez pas
+                    quartier de Schiltigheim et ses environs. N&apos;hésitez pas
                     à nous contacter pour vérifier si votre adresse est dans
                     notre zone d&apos;intervention.
                   </AccordionContent>

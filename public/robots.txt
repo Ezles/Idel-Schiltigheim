@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://cabinet-mriviere.fr/sitemap.xml
+
+# Disallow admin and private areas
+Disallow: /dashboard-management-secure/
+Disallow: /api/ 

@@ -1,6 +1,5 @@
 "use client";
 
-
 import { Button } from "@/components/ui/button";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
@@ -28,10 +27,10 @@ const ContactSection = () => {
                 maintenant.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="tel:+33388000000">
+                <Link href="tel:+33766720766">
                   <Button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white rounded-md flex items-center gap-2 mx-auto shadow-md hover:shadow-lg transition-all duration-300">
                     <PhoneIcon className="h-4 w-4" />
-                    <span>03 88 00 00 00</span>
+                    <span>07 66 72 07 66</span>
                   </Button>
                 </Link>
                 <Link href="/contact">
@@ -106,10 +105,10 @@ const ContactSection = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Link href="tel:+33388000000">
+                <Link href="tel:+33766720766">
                   <Button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white rounded-md flex items-center gap-2 shadow-md hover:shadow-lg transition-all duration-300 text-base">
                     <PhoneIcon className="h-5 w-5" />
-                    <span>03 88 00 00 00</span>
+                    <span>07 66 72 07 66</span>
                   </Button>
                 </Link>
               </motion.div>

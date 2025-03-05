@@ -47,8 +47,8 @@ const Navbar = () => {
           >
             <Link href="/" className="flex items-center group">
               <motion.img
-                src="/11173212-diaporama.png"
-                alt="Logo"
+                src="/images/logo_cabinet_schiltigheim.png"
+                alt="Logo Cabinet Infirmier Schiltigheim"
                 className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
                 whileHover={{ rotate: [0, -5, 5, 0] }}
                 transition={{ duration: 0.5 }}
@@ -124,13 +124,13 @@ const Navbar = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <motion.a
-              href="tel:0665284832"
+              href="tel:0766720766"
               className="flex items-center text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300 group"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
             >
               <PhoneIcon className="h-4 w-4 mr-1 group-hover:scale-110 transition-transform duration-300" />
-              <span className="text-sm">06 65 28 48 32</span>
+              <span className="text-sm">07 66 72 07 66</span>
             </motion.a>
             <motion.a
               href="/contact"
@@ -147,7 +147,7 @@ const Navbar = () => {
               transition={{ duration: 0.2 }}
             >
               <MapPinIcon className="h-4 w-4 mr-1" />
-              <span className="text-sm">Hautepierre, Strasbourg</span>
+              <span className="text-sm">Schiltigheim</span>
             </motion.div>
           </motion.div>
 
@@ -263,13 +263,13 @@ const Navbar = () => {
             </motion.div>
             <div className="pt-4 border-t border-gray-100 dark:border-gray-700">
               <motion.a
-                href="tel:0665284832"
+                href="tel:0766720766"
                 className="flex items-center py-2 text-gray-600 dark:text-gray-300"
                 whileHover={{ x: 5 }}
                 transition={{ duration: 0.2 }}
               >
                 <PhoneIcon className="h-4 w-4 mr-2" />
-                <span className="text-sm">06 65 28 48 32</span>
+                <span className="text-sm">07 66 72 07 66</span>
               </motion.a>
               <motion.a
                 href="/contact"

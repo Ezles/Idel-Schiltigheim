@@ -53,7 +53,19 @@ export default function ContactPageContent() {
     setIsSubmitting(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Une erreur est survenue");
+      }
 
       setShowSuccessOverlay(true);
       setFormData({
@@ -73,7 +85,10 @@ export default function ContactPageContent() {
       toast({
         variant: "destructive",
         title: "Erreur",
-        description: "Une erreur est survenue. Veuillez réessayer.",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Une erreur est survenue. Veuillez réessayer.",
       });
     } finally {
       setIsSubmitting(false);
@@ -357,7 +372,7 @@ export default function ContactPageContent() {
                     Téléphone
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 mt-1">
-                    06 65 28 48 32
+                    07 66 72 07 66
                   </p>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                     Du lundi au vendredi, 8h-19h
@@ -378,7 +393,7 @@ export default function ContactPageContent() {
                     Email
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 mt-1">
-                    contact@cabinet-hautepierre.fr
+                    contact@cabinet-mriviere.fr
                   </p>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                     Nous répondons sous 24-48h
@@ -399,11 +414,11 @@ export default function ContactPageContent() {
                     Adresse
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 mt-1">
-                    Cabinet Infirmier de Hautepierre
+                    Cabinet Infirmier de Schiltigheim
                     <br />
-                    5 Avenue Racine
+                    130 route de Bischwiller
                     <br />
-                    67200 Strasbourg
+                    67300 Schiltigheim
                   </p>
                 </div>
               </motion.div>

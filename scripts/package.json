@@ -1,0 +1,9 @@
+{
+  "name": "admin-scripts",
+  "version": "1.0.0",
+  "description": "Scripts d'administration pour l'application",
+  "type": "module",
+  "scripts": {
+    "create-admin": "node create-admin.js"
+  }
+}
