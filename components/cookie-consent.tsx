@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { Switch } from "@/components/ui/switch";
 
 type CookieConsent = {
   necessary: boolean;
@@ -351,191 +352,182 @@ export default function CookieConsent() {
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-white dark:bg-gray-900 shadow-lg border-t border-gray-200 dark:border-gray-800"
+            transition={{ duration: 0.4, type: "spring", damping: 20 }}
+            className="fixed bottom-4 left-0 right-0 z-50 mx-auto max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl px-4 sm:px-0"
           >
-            <div className="max-w-6xl mx-auto">
-              {!showPreferences ? (
-                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                      Nous respectons votre vie privée
-                    </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                      Nous utilisons des cookies pour améliorer votre
-                      expérience, analyser le trafic et personnaliser le
-                      contenu. En cliquant sur &quot;Accepter tout&quot;, vous
-                      consentez à notre utilisation de tous les cookies. Vous
-                      pouvez également personnaliser vos préférences.
-                    </p>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">
-                      Pour plus d&apos;informations, consultez notre{" "}
-                      <Link
-                        href="/politique-confidentialite"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
+            <div className="bg-white dark:bg-gray-900 shadow-xl border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden">
+              <div className="p-4 sm:p-5">
+                {!showPreferences ? (
+                  <div className="flex flex-col items-start justify-between gap-4">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                        Nous respectons votre vie privée
+                      </h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                        Nous utilisons des cookies pour améliorer votre
+                        expérience, analyser le trafic et personnaliser le
+                        contenu. En cliquant sur &quot;Accepter tout&quot;, vous
+                        consentez à notre utilisation de tous les cookies. Vous
+                        pouvez également personnaliser vos préférences.
+                      </p>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">
+                        Pour plus d&apos;informations, consultez notre{" "}
+                        <Link
+                          href="/politique-confidentialite"
+                          className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                        >
+                          politique de confidentialité
+                        </Link>
+                        .
+                      </div>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-3 w-full mt-4">
+                      <Button
+                        variant="outline"
+                        className="text-sm rounded-xl hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-100 transition-colors"
+                        onClick={() => setShowPreferences(true)}
                       >
-                        politique de confidentialité
-                      </Link>
-                      .
+                        Personnaliser
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className="text-sm rounded-xl hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-100 transition-colors"
+                        onClick={rejectAll}
+                      >
+                        Refuser tout
+                      </Button>
+                      <Button
+                        className="text-sm bg-blue-600 hover:bg-blue-700 text-white hover:text-white rounded-xl transition-colors"
+                        onClick={acceptAll}
+                      >
+                        Accepter tout
+                      </Button>
                     </div>
                   </div>
-                  <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
-                    <Button
-                      variant="outline"
-                      className="text-sm"
-                      onClick={() => setShowPreferences(true)}
-                    >
-                      Personnaliser
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="text-sm"
-                      onClick={rejectAll}
-                    >
-                      Refuser tout
-                    </Button>
-                    <Button
-                      className="text-sm bg-blue-600 hover:bg-blue-700"
-                      onClick={acceptAll}
-                    >
-                      Accepter tout
-                    </Button>
-                  </div>
-                </div>
-              ) : (
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                      Préférences de cookies
-                    </h3>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => setShowPreferences(false)}
-                    >
-                      <XMarkIcon className="h-5 w-5" />
-                    </Button>
-                  </div>
-                  <div className="space-y-4 mb-4">
-                    <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-md">
-                      <div>
-                        <h4 className="font-medium text-gray-900 dark:text-gray-100">
-                          Cookies nécessaires
-                        </h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
-                          Ces cookies sont essentiels au fonctionnement du site
-                          et ne peuvent pas être désactivés.
-                        </p>
-                      </div>
-                      <div className="relative">
-                        <input
-                          type="checkbox"
+                ) : (
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                        Préférences de cookies
+                      </h3>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-300"
+                        onClick={() => setShowPreferences(false)}
+                      >
+                        <XMarkIcon className="h-5 w-5" />
+                      </Button>
+                    </div>
+                    <div className="space-y-3 mb-4">
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.2, delay: 0.1 }}
+                        className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-xl shadow-sm"
+                      >
+                        <div className="pr-3">
+                          <h4 className="font-medium text-gray-900 dark:text-gray-100 text-sm">
+                            Cookies nécessaires
+                          </h4>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">
+                            Ces cookies sont essentiels au fonctionnement du site
+                            et ne peuvent pas être désactivés.
+                          </p>
+                        </div>
+                        <Switch
                           checked={consent.necessary}
                           disabled
-                          className="sr-only peer"
                           id="necessary"
                         />
-                        <label
-                          htmlFor="necessary"
-                          className="flex w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"
-                        ></label>
-                      </div>
-                    </div>
+                      </motion.div>
 
-                    <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-md">
-                      <div>
-                        <h4 className="font-medium text-gray-900 dark:text-gray-100">
-                          Cookies analytiques
-                        </h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
-                          Ces cookies nous permettent de mesurer le trafic et
-                          d&apos;analyser votre comportement pour améliorer
-                          notre site.
-                        </p>
-                      </div>
-                      <div className="relative">
-                        <input
-                          type="checkbox"
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.2, delay: 0.2 }}
+                        className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-xl shadow-sm"
+                      >
+                        <div className="pr-3">
+                          <h4 className="font-medium text-gray-900 dark:text-gray-100 text-sm">
+                            Cookies analytiques
+                          </h4>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">
+                            Ces cookies nous permettent de mesurer le trafic et
+                            d&apos;analyser votre comportement pour améliorer
+                            notre site.
+                          </p>
+                        </div>
+                        <Switch
                           checked={consent.analytics}
-                          onChange={() => handleToggle("analytics")}
-                          className="sr-only peer"
+                          onCheckedChange={() => handleToggle("analytics")}
                           id="analytics"
                         />
-                        <label
-                          htmlFor="analytics"
-                          className="flex w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600 cursor-pointer"
-                        ></label>
-                      </div>
-                    </div>
+                      </motion.div>
 
-                    <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-md">
-                      <div>
-                        <h4 className="font-medium text-gray-900 dark:text-gray-100">
-                          Cookies marketing
-                        </h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
-                          Ces cookies sont utilisés pour suivre les visiteurs
-                          sur les sites web afin d&apos;afficher des publicités
-                          pertinentes.
-                        </p>
-                      </div>
-                      <div className="relative">
-                        <input
-                          type="checkbox"
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.2, delay: 0.3 }}
+                        className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-xl shadow-sm"
+                      >
+                        <div className="pr-3">
+                          <h4 className="font-medium text-gray-900 dark:text-gray-100 text-sm">
+                            Cookies marketing
+                          </h4>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">
+                            Ces cookies sont utilisés pour suivre les visiteurs
+                            sur les sites web afin d&apos;afficher des publicités
+                            pertinentes.
+                          </p>
+                        </div>
+                        <Switch
                           checked={consent.marketing}
-                          onChange={() => handleToggle("marketing")}
-                          className="sr-only peer"
+                          onCheckedChange={() => handleToggle("marketing")}
                           id="marketing"
                         />
-                        <label
-                          htmlFor="marketing"
-                          className="flex w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600 cursor-pointer"
-                        ></label>
-                      </div>
-                    </div>
+                      </motion.div>
 
-                    <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-md">
-                      <div>
-                        <h4 className="font-medium text-gray-900 dark:text-gray-100">
-                          Cookies de préférences
-                        </h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
-                          Ces cookies permettent au site de se souvenir de vos
-                          préférences et options.
-                        </p>
-                      </div>
-                      <div className="relative">
-                        <input
-                          type="checkbox"
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.2, delay: 0.4 }}
+                        className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-xl shadow-sm"
+                      >
+                        <div className="pr-3">
+                          <h4 className="font-medium text-gray-900 dark:text-gray-100 text-sm">
+                            Cookies de préférences
+                          </h4>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">
+                            Ces cookies permettent au site de se souvenir de vos
+                            préférences et options.
+                          </p>
+                        </div>
+                        <Switch
                           checked={consent.preferences}
-                          onChange={() => handleToggle("preferences")}
-                          className="sr-only peer"
+                          onCheckedChange={() => handleToggle("preferences")}
                           id="preferences"
                         />
-                        <label
-                          htmlFor="preferences"
-                          className="flex w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600 cursor-pointer"
-                        ></label>
-                      </div>
+                      </motion.div>
+                    </div>
+                    <div className="flex justify-end gap-3">
+                      <Button
+                        variant="outline"
+                        className="text-sm rounded-xl hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-100 transition-colors"
+                        onClick={() => setShowPreferences(false)}
+                      >
+                        Annuler
+                      </Button>
+                      <Button
+                        className="text-sm bg-blue-600 hover:bg-blue-700 text-white hover:text-white rounded-xl transition-colors"
+                        onClick={savePreferences}
+                      >
+                        Enregistrer mes préférences
+                      </Button>
                     </div>
                   </div>
-                  <div className="flex justify-end gap-2">
-                    <Button
-                      variant="outline"
-                      className="text-sm"
-                      onClick={() => setShowPreferences(false)}
-                    >
-                      Annuler
-                    </Button>
-                    <Button
-                      className="text-sm bg-blue-600 hover:bg-blue-700"
-                      onClick={savePreferences}
-                    >
-                      Enregistrer mes préférences
-                    </Button>
-                  </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </motion.div>
         )}
@@ -547,6 +539,7 @@ export default function CookieConsent() {
           <Button
             variant="outline"
             size="sm"
+            className="hover:text-gray-900 dark:hover:text-gray-100"
             onClick={configureSupabase}
             disabled={isConfiguring}
           >
