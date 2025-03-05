@@ -3,11 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { generateAnonymousId, supabase } from "@/lib/supabase";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { createClient } from "@supabase/supabase-js";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { Switch } from "@/components/ui/switch";
 
 type CookieConsent = {
@@ -19,254 +17,131 @@ type CookieConsent = {
 
 export const resetCookiePreferences = () => {
   if (typeof window !== "undefined") {
-    localStorage.removeItem("cookieConsent");
-    localStorage.removeItem("anonymous_user_id");
-    window.location.reload();
+    localStorage.removeItem("cookie_consent");
+    localStorage.removeItem("user_id");
+    document.cookie = "cookie_consent=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   }
 };
 
-// Configuration Supabase
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
-
-// Fonction pour générer ou récupérer un ID utilisateur unique
 const getUserId = (): string => {
-  const userId = localStorage.getItem("user_id");
-
-  if (!userId) {
-    const newUserId = uuidv4();
-    localStorage.setItem("user_id", newUserId);
-    return newUserId;
+  if (typeof window === "undefined") {
+    return "";
   }
 
+  let userId = localStorage.getItem("user_id");
+  if (!userId) {
+    userId = generateAnonymousId();
+    localStorage.setItem("user_id", userId);
+  }
   return userId;
 };
 
-// Fonction pour initialiser le tracking si les cookies analytiques sont acceptés
-// Note: Cette fonction n'est pas utilisée directement mais conservée pour référence future
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const initializeTracking = (consent: CookieConsent) => {
-  if (consent.analytics) {
-    try {
-      const userId = getUserId();
-      const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
-      // Envoyer les données analytiques de base
-      supabase
-        .from("analytics_data")
-        .insert({
-          user_id: userId,
-          page_visited: window.location.pathname,
-          screen_size: `${window.innerWidth}x${window.innerHeight}`,
-          referrer: document.referrer || null,
-        })
-        .then(({ error }) => {
-          if (error) {
-            console.error(
-              "Erreur lors de l'enregistrement des données analytiques:",
-              error
-            );
-          }
-        });
-
-      // Ajouter un écouteur pour les changements de page (pour les applications SPA)
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const handleRouteChange = (url: string) => {
-        supabase
-          .from("analytics_data")
-          .insert({
-            user_id: userId,
-            page_visited: url,
-            screen_size: `${window.innerWidth}x${window.innerHeight}`,
-            referrer: window.location.pathname,
-          })
-          .then(({ error }) => {
-            if (error) {
-              console.error(
-                "Erreur lors de l'enregistrement des données analytiques:",
-                error
-              );
-            }
-          });
-      };
-    } catch (error) {
-      console.error("Erreur lors de l'initialisation du tracking:", error);
-    }
-  }
-};
-
 export default function CookieConsent() {
-  const [showBanner, setShowBanner] = useState(false);
-  const [showPreferences, setShowPreferences] = useState(false);
-  const [showAdminButton, setShowAdminButton] = useState(false);
-  const [isConfiguring, setIsConfiguring] = useState(false);
-  const [configMessage, setConfigMessage] = useState("");
   const [consent, setConsent] = useState<CookieConsent>({
     necessary: true,
     analytics: false,
     marketing: false,
     preferences: false,
   });
-  const [userId, setUserId] = useState<string>("");
+  const [showBanner, setShowBanner] = useState(false);
+  const [showPreferences, setShowPreferences] = useState(false);
+  const [userId, setUserId] = useState<string | null>(null);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      try {
-        const id = generateAnonymousId();
-        setUserId(id);
-
-        const isAdmin = localStorage.getItem("isAdmin") === "true";
-        setShowAdminButton(isAdmin);
-
-        const storedConsent = localStorage.getItem("cookieConsent");
-        if (!storedConsent) {
-          const timer = setTimeout(() => {
-            setShowBanner(true);
-          }, 1000);
-          return () => clearTimeout(timer);
-        } else {
-          setConsent(JSON.parse(storedConsent));
-        }
-      } catch (err) {
-        console.error("Erreur lors de l'initialisation des préférences:", err);
-      }
+    const storedConsent = localStorage.getItem("cookie_consent");
+    if (storedConsent) {
+      setConsent(JSON.parse(storedConsent));
+      setShowBanner(false);
+    } else {
+      setShowBanner(true);
     }
+
+    const id = getUserId();
+    setUserId(id);
   }, []);
-
-  const configureSupabase = async () => {
-    setIsConfiguring(true);
-    setConfigMessage("Configuration de Supabase en cours...");
-
-    try {
-      const response = await fetch("/api/setup-supabase");
-      const data = await response.json();
-
-      if (data.success) {
-        setConfigMessage("Configuration de Supabase terminée avec succès!");
-        storeConsentInSupabase(consent);
-      } else {
-        setConfigMessage(`Erreur: ${data.error}`);
-      }
-    } catch (err) {
-      setConfigMessage(
-        `Erreur: ${err instanceof Error ? err.message : "Erreur inconnue"}`
-      );
-    } finally {
-      setTimeout(() => {
-        setConfigMessage("");
-        setIsConfiguring(false);
-      }, 5000);
-    }
-  };
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const enableAdminMode = () => {
-    localStorage.setItem("isAdmin", "true");
-    setShowAdminButton(true);
-  };
 
   const storeConsentInSupabase = async (consentData: CookieConsent) => {
     if (!userId) {
-      console.error("Erreur: ID utilisateur non défini");
       return;
     }
 
     try {
-      console.log(
-        "Tentative d'enregistrement des préférences pour l'utilisateur:",
-        userId
-      );
-
-      const { data: insertData, error: insertError } = await supabase
+      const { data: existingData, error: fetchError } = await supabase
         .from("cookie_consents")
-        .insert({
-          user_id: userId,
-          necessary: consentData.necessary,
-          analytics: consentData.analytics,
-          marketing: consentData.marketing,
-          preferences: consentData.preferences,
-          updated_at: new Date().toISOString(),
-        })
-        .select();
+        .select("*")
+        .eq("user_id", userId)
+        .single();
 
-      if (insertError) {
-        if (insertError.code === "23505") {
-          console.log(
-            "L'utilisateur existe déjà, mise à jour des préférences..."
-          );
+      if (fetchError && fetchError.code !== "PGRST116") {
+        return;
+      }
 
-          const { data: updateData, error: updateError } = await supabase
-            .from("cookie_consents")
-            .update({
-              necessary: consentData.necessary,
-              analytics: consentData.analytics,
-              marketing: consentData.marketing,
-              preferences: consentData.preferences,
-              updated_at: new Date().toISOString(),
-            })
-            .eq("user_id", userId)
-            .select();
+      if (existingData) {
+        const { error: updateError } = await supabase
+          .from("cookie_consents")
+          .update({
+            necessary: consentData.necessary,
+            analytics: consentData.analytics,
+            marketing: consentData.marketing,
+            preferences: consentData.preferences,
+            updated_at: new Date().toISOString(),
+          })
+          .eq("user_id", userId);
 
-          if (updateError) {
-            console.error(
-              "Erreur Supabase lors de la mise à jour des préférences:",
-              updateError.message
-            );
-            console.error("Code d'erreur:", updateError.code);
-            console.error("Détails:", updateError.details);
-          } else {
-            console.log("Préférences mises à jour avec succès:", updateData);
-
+        if (updateError) {
+          if (
+            updateError.code === "42501" &&
+            updateError.message.includes("row-level security policy")
+          ) {
             if (consentData.analytics) {
               trackPageView();
             }
           }
         } else {
-          console.error(
-            "Erreur Supabase lors de l'enregistrement des préférences:",
-            insertError.message
-          );
-          console.error("Code d'erreur:", insertError.code);
-          console.error("Détails:", insertError.details);
+          if (consentData.analytics) {
+            trackPageView();
+          }
+        }
+      } else {
+        const { error: insertError } = await supabase
+          .from("cookie_consents")
+          .insert({
+            user_id: userId,
+            necessary: consentData.necessary,
+            analytics: consentData.analytics,
+            marketing: consentData.marketing,
+            preferences: consentData.preferences,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          });
 
+        if (insertError) {
           if (
             insertError.code === "42501" &&
             insertError.message.includes("row-level security policy")
           ) {
-            console.log(
-              "Erreur de politique de sécurité RLS - Les préférences sont stockées uniquement en local"
-            );
-
             if (consentData.analytics) {
               trackPageView();
             }
           }
-        }
-      } else {
-        console.log("Préférences enregistrées avec succès:", insertData);
-
-        if (consentData.analytics) {
-          trackPageView();
+        } else {
+          if (consentData.analytics) {
+            trackPageView();
+          }
         }
       }
-    } catch (err) {
-      console.error("Exception lors de l'enregistrement des préférences:", err);
+    } catch {
+      console.error("Exception lors de l'enregistrement des préférences");
     }
   };
 
   const trackPageView = async () => {
     if (!userId) {
-      console.error("Erreur: ID utilisateur non défini pour le suivi");
       return;
     }
 
     try {
-      console.log(
-        "Tentative d'enregistrement d'une vue de page pour l'utilisateur:",
-        userId
-      );
-
-      const { data, error } = await supabase.from("analytics_data").insert({
+      const { error } = await supabase.from("analytics_data").insert({
         user_id: userId,
         page_url: window.location.pathname,
         referrer: document.referrer || null,
@@ -276,30 +151,11 @@ export default function CookieConsent() {
         timestamp: new Date().toISOString(),
       });
 
-      if (error) {
-        console.error(
-          "Erreur Supabase lors de l'enregistrement des données d'analyse:",
-          error.message
-        );
-        console.error("Code d'erreur:", error.code);
-        console.error("Détails:", error.details);
-
-        if (
-          error.code === "42501" &&
-          error.message.includes("row-level security policy")
-        ) {
-          console.log(
-            "Erreur de politique de sécurité RLS - Les données d'analyse ne sont pas stockées"
-          );
-        }
-      } else {
-        console.log("Données d'analyse enregistrées avec succès:", data);
+      if (error && error.code === "42501" && error.message.includes("row-level security policy")) {
+        // Ignorer les erreurs de politique de sécurité au niveau des lignes
       }
-    } catch (err) {
-      console.error(
-        "Exception lors de l'enregistrement des données d'analyse:",
-        err
-      );
+    } catch {
+      // Ignorer les erreurs de suivi
     }
   };
 
@@ -532,26 +388,6 @@ export default function CookieConsent() {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Bouton d'administration (visible uniquement en mode développement) */}
-      {showAdminButton && (
-        <div className="fixed top-4 right-4 z-50">
-          <Button
-            variant="outline"
-            size="sm"
-            className="hover:text-gray-900 dark:hover:text-gray-100"
-            onClick={configureSupabase}
-            disabled={isConfiguring}
-          >
-            {isConfiguring ? "Configuration..." : "Configurer Supabase"}
-          </Button>
-          {configMessage && (
-            <div className="mt-2 p-2 bg-white dark:bg-gray-800 rounded shadow text-sm">
-              {configMessage}
-            </div>
-          )}
-        </div>
-      )}
     </>
   );
 }

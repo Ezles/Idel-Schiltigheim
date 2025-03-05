@@ -2,17 +2,15 @@ import { NextResponse } from "next/server";
 
 export async function POST() {
   try {
-    // Créer une réponse
     const response = NextResponse.json({
       message: "Déconnexion réussie",
       redirectUrl: "/dashboard-management-secure/login",
     });
 
-    // Supprimer le cookie en définissant une date d'expiration dans le passé
     response.cookies.set("admin_token", "", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      expires: new Date(0), // Date dans le passé
+      expires: new Date(0),
       path: "/",
       sameSite: "lax",
     });
