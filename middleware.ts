@@ -14,20 +14,14 @@ export async function middleware(request: NextRequest) {
   // Autoriser l'accès aux fichiers de validation de certificat
   if (
     request.nextUrl.pathname.startsWith("/.well-known/pki-validation") ||
-    request.nextUrl.pathname.startsWith("/.well-known/ssl-check.txt")
+    request.nextUrl.pathname.startsWith("/.well-known/ssl-check.txt") ||
+    request.nextUrl.pathname.startsWith("/.well-known/acme-challenge")
   ) {
     return NextResponse.next();
   }
 
-  // Forcer HTTPS avec une redirection 301 (permanente)
-  if (
-    process.env.NODE_ENV === "production" &&
-    !request.nextUrl.protocol.includes("https")
-  ) {
-    const httpsUrl = new URL(request.url);
-    httpsUrl.protocol = "https:";
-    return NextResponse.redirect(httpsUrl, 301);
-  }
+  // Note: La redirection HTTP vers HTTPS est gérée par Vercel dans vercel.json
+  // Nous n'avons pas besoin de la gérer ici
 
   if (request.nextUrl.pathname.startsWith(ADMIN_ROUTE_PREFIX)) {
     console.log("Middleware - URL:", request.nextUrl.pathname);

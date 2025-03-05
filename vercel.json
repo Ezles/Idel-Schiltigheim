@@ -38,14 +38,6 @@
       ]
     }
   ],
-  "redirects": [
-    {
-      "source": "http://:host/:path*",
-      "destination": "https://:host/:path*",
-      "statusCode": 308,
-      "permanent": true
-    }
-  ],
   "env": {
     "NODE_ENV": "production"
   }
