@@ -23,6 +23,12 @@ export const resetCookiePreferences = () => {
   }
 };
 
+const setCookieWithExpiry = (name: string, value: string) => {
+  const expiryDate = new Date();
+  expiryDate.setMonth(expiryDate.getMonth() + 6);
+  document.cookie = `${name}=${value}; expires=${expiryDate.toUTCString()}; path=/; SameSite=Strict`;
+};
+
 const getUserId = (): string => {
   if (typeof window === "undefined") {
     return "";
@@ -48,12 +54,52 @@ export default function CookieConsent() {
   const [userId, setUserId] = useState<string | null>(null);
 
   useEffect(() => {
+    const getCookie = (name: string): string | null => {
+      const cookieValue = document.cookie
+        .split('; ')
+        .find(row => row.startsWith(`${name}=`));
+      return cookieValue ? cookieValue.split('=')[1] : null;
+    };
+
     const storedConsent = localStorage.getItem("cookie_consent");
+    
     if (storedConsent) {
       setConsent(JSON.parse(storedConsent));
       setShowBanner(false);
     } else {
-      setShowBanner(true);
+      const cookieConsent = getCookie("cookie_consent");
+      if (cookieConsent) {
+        let consentValues: CookieConsent;
+        
+        if (cookieConsent === "accepted") {
+          consentValues = {
+            necessary: true,
+            analytics: true,
+            marketing: true,
+            preferences: true,
+          };
+        } else if (cookieConsent === "rejected") {
+          consentValues = {
+            necessary: true,
+            analytics: false,
+            marketing: false,
+            preferences: false,
+          };
+        } else {
+          consentValues = {
+            necessary: true,
+            analytics: false,
+            marketing: false,
+            preferences: false,
+          };
+        }
+        
+        setConsent(consentValues);
+        localStorage.setItem("cookie_consent", JSON.stringify(consentValues));
+        setShowBanner(false);
+      } else {
+        setShowBanner(true);
+      }
     }
 
     const id = getUserId();
@@ -167,7 +213,8 @@ export default function CookieConsent() {
       preferences: true,
     };
     setConsent(newConsent);
-    localStorage.setItem("cookieConsent", JSON.stringify(newConsent));
+    localStorage.setItem("cookie_consent", JSON.stringify(newConsent));
+    setCookieWithExpiry("cookie_consent", "accepted");
     storeConsentInSupabase(newConsent);
     setShowBanner(false);
   };
@@ -180,13 +227,15 @@ export default function CookieConsent() {
       preferences: false,
     };
     setConsent(newConsent);
-    localStorage.setItem("cookieConsent", JSON.stringify(newConsent));
+    localStorage.setItem("cookie_consent", JSON.stringify(newConsent));
+    setCookieWithExpiry("cookie_consent", "rejected");
     storeConsentInSupabase(newConsent);
     setShowBanner(false);
   };
 
   const savePreferences = () => {
-    localStorage.setItem("cookieConsent", JSON.stringify(consent));
+    localStorage.setItem("cookie_consent", JSON.stringify(consent));
+    setCookieWithExpiry("cookie_consent", "customized");
     storeConsentInSupabase(consent);
     setShowBanner(false);
     setShowPreferences(false);
