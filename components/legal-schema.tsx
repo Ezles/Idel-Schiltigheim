@@ -24,6 +24,38 @@ export default function LegalSchema({
       url: "https://cabinet-mriviere.fr",
       name: "Cabinet Infirmier de Schiltigheim",
     },
+    privacyPolicy: {
+      "@type": "PrivacyPolicy",
+      name: "Politique de Confidentialité",
+      url: "https://cabinet-mriviere.fr/politique-confidentialite",
+      cookiePolicy: {
+        "@type": "CookiePolicy",
+        name: "Politique de Cookies",
+        url: "https://cabinet-mriviere.fr/politique-cookies",
+        retentionPeriod: "P6M", // 6 mois
+        legalBasis: "Consent",
+      },
+      dataRetention: {
+        "@type": "DataRetention",
+        retentionPolicy: [
+          {
+            "@type": "DataCategory",
+            category: "Données de contact",
+            retentionPeriod: "P1Y", // 1 an
+          },
+          {
+            "@type": "DataCategory",
+            category: "Préférences de cookies",
+            retentionPeriod: "P6M", // 6 mois
+          },
+          {
+            "@type": "DataCategory",
+            category: "Données analytiques",
+            retentionPeriod: "P1Y", // 12 mois
+          },
+        ],
+      },
+    },
   };
 
   return (
