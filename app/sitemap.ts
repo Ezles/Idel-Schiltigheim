@@ -2,11 +2,8 @@ import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://cabinet-mriviere.fr";
-
-  // Date de dernière modification (aujourd'hui)
   const lastModified = new Date();
 
-  // Routes principales du site
   const routes = [
     {
       url: `${baseUrl}`,

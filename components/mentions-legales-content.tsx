@@ -16,12 +16,15 @@ export default function MentionsLegalesContent() {
     return (
       <>
         <Navbar />
-        <main className="max-w-3xl mx-auto px-6 py-12">
+        <main className="max-w-3xl mx-auto px-6 py-12 pt-32">
           <div className="mb-12">
             <h1 className="text-2xl font-light mb-2 text-gray-900 dark:text-gray-100">
-              Mentions Légales
+              Mentions{" "}
+              <span className="text-gray-900 dark:text-gray-100 font-medium">
+                Légales
+              </span>
             </h1>
-            <div className="h-px w-20 bg-gray-300 mb-6"></div>
+            <div className="h-px w-20 bg-blue-500 mb-6"></div>
             <p className="text-gray-600 dark:text-gray-300 text-sm">
               Informations légales concernant le Cabinet Infirmier de
               Schiltigheim et l&apos;utilisation de ce site web.
@@ -64,9 +67,12 @@ export default function MentionsLegalesContent() {
       <main className="max-w-3xl mx-auto px-6 py-12">
         <div className="mb-12">
           <h1 className="text-2xl font-light mb-2 text-gray-900 dark:text-gray-100">
-            Mentions Légales
+            Mentions{" "}
+            <span className="text-gray-900 dark:text-gray-100 font-medium">
+              Légales
+            </span>
           </h1>
-          <div className="h-px w-20 bg-gray-300 mb-6"></div>
+          <div className="h-px w-20 bg-blue-500 mb-6"></div>
           <p className="text-gray-600 dark:text-gray-300 text-sm">
             Informations légales concernant le Cabinet Infirmier de Schiltigheim
             et l&apos;utilisation de ce site web.

@@ -8,21 +8,18 @@ const jwtSecret = new TextEncoder().encode(
 
 export async function GET(request: NextRequest) {
   try {
-    // Récupérer tous les cookies
     const allCookies = request.cookies.getAll();
     console.log(
       "Tous les cookies:",
       allCookies.map((c) => c.name)
     );
 
-    // Récupérer spécifiquement le cookie admin_token
     const adminToken = request.cookies.get("admin_token");
     console.log("Cookie admin_token trouvé:", !!adminToken);
 
     let isTokenValid = false;
     let tokenInfo = null;
 
-    // Vérifier si le token est valide
     if (adminToken && adminToken.value) {
       try {
         const { payload } = await jwtVerify(adminToken.value, jwtSecret);
@@ -47,7 +44,6 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    // Créer la réponse
     const response = NextResponse.json({
       allCookies: allCookies.map((cookie) => ({
         name: cookie.name,
@@ -70,7 +66,6 @@ export async function GET(request: NextRequest) {
           },
     });
 
-    // Ajouter des en-têtes pour éviter la mise en cache
     response.headers.set("Cache-Control", "no-store, max-age=0");
     response.headers.set("Pragma", "no-cache");
     response.headers.set("Expires", "0");

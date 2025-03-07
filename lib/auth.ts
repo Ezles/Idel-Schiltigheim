@@ -18,7 +18,6 @@ export async function verifyAdminToken(token: string) {
       return null;
     }
 
-    // Vérifier l'expiration
     const currentTime = Math.floor(Date.now() / 1000);
     if (payload.exp && payload.exp < currentTime) {
       console.log("Token expiré");

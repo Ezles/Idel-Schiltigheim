@@ -3,13 +3,11 @@ import { compare } from "bcryptjs";
 import { SignJWT } from "jose";
 import { NextRequest, NextResponse } from "next/server";
 
-// Clé secrète pour signer les tokens JWT
 const jwtSecret = new TextEncoder().encode(
   process.env.JWT_SECRET ||
     "your-secret-key-for-jwt-tokens-should-be-very-long-and-secure"
 );
 
-// Assurez-vous d'utiliser les variables d'environnement exactement comme elles sont définies
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
 
@@ -21,7 +19,6 @@ export async function POST(request: NextRequest) {
     console.log("URL Supabase:", supabaseUrl);
     console.log("Clé service définie:", !!supabaseServiceKey);
 
-    // Vérifier si les variables d'environnement sont définies
     if (!supabaseUrl || !supabaseServiceKey) {
       console.error("Variables d'environnement Supabase manquantes");
       return NextResponse.json(
@@ -38,8 +35,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Créer le client Supabase avec les bonnes clés
-    // Assurez-vous que la clé de service est correctement utilisée
     console.log("Création du client Supabase...");
     const supabase = createClient(supabaseUrl, supabaseServiceKey, {
       auth: {
@@ -110,7 +105,6 @@ export async function POST(request: NextRequest) {
       }
 
       console.log("Génération du token JWT avec jose...");
-      // Créer un token JWT avec jose au lieu de jsonwebtoken
       const token = await new SignJWT({
         username: data.username,
         role: "admin",
@@ -129,12 +123,10 @@ export async function POST(request: NextRequest) {
         redirectUrl: "/dashboard-management-secure",
       });
 
-      // Utiliser directement la réponse pour définir le cookie
-      // Assurez-vous que le nom du cookie correspond à celui utilisé dans le middleware
       response.cookies.set("admin_token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        maxAge: 60 * 60 * 24, // 24 heures en secondes
+        maxAge: 60 * 60 * 24,
         path: "/",
         sameSite: "lax",
       });
@@ -145,7 +137,6 @@ export async function POST(request: NextRequest) {
       );
       console.log("Connexion réussie pour l'utilisateur:", username);
 
-      // Ajouter des en-têtes pour éviter la mise en cache
       response.headers.set("Cache-Control", "no-store, max-age=0");
       response.headers.set("Pragma", "no-cache");
       response.headers.set("Expires", "0");

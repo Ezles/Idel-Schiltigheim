@@ -14,7 +14,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Utiliser une solution compatible avec tous les environnements
     const { data, error } = await resend.emails.send({
       from: "Contact <contact@cabinet-mriviere.fr>",
       to: ["contact@cabinet-mriviere.fr"],

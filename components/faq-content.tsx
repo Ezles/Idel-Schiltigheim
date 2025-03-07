@@ -49,7 +49,17 @@ export default function FAQContent() {
       question:
         "Quelle est la zone géographique couverte pour les soins à domicile ?",
       answer:
-        "Nous intervenons principalement dans le quartier de Schiltigheim et ses environs, couvrant une grande partie de la périphérie nord de Strasbourg. Pour savoir si vous êtes dans notre zone d'intervention, n'hésitez pas à nous contacter par téléphone.",
+        "Nous intervenons principalement à Schiltigheim et dans les communes environnantes : Strasbourg, Bischheim, Hoenheim, Souffelweyersheim, Mundolsheim et Reichstett. Pour toute demande en dehors de cette zone, n'hésitez pas à nous contacter pour vérifier notre disponibilité.",
+    },
+    {
+      question: "Comment se déroule la première visite à domicile ?",
+      answer:
+        "Lors de la première visite, nous prenons le temps de faire connaissance, d'évaluer vos besoins et de mettre en place un plan de soins adapté. Nous vous demandons de préparer votre carte vitale, votre carte de mutuelle, votre ordonnance et votre dossier médical si vous en avez un. Cette première rencontre est essentielle pour établir une relation de confiance.",
+    },
+    {
+      question: "Proposez-vous des soins d'urgence ?",
+      answer:
+        "Nous ne sommes pas un service d'urgence. En cas d'urgence médicale, veuillez contacter le SAMU (15) ou les pompiers (18). Cependant, pour nos patients réguliers, nous faisons notre possible pour répondre rapidement aux besoins urgents non vitaux dans la mesure de nos disponibilités.",
     },
   ];
 
@@ -70,36 +80,27 @@ export default function FAQContent() {
     return (
       <>
         <Navbar />
-        <main className="max-w-3xl mx-auto px-6 py-12">
+        <main className="max-w-4xl mx-auto px-6 py-12 pt-32">
           <div className="mb-12">
             <h1 className="text-2xl font-light mb-2 text-gray-900 dark:text-gray-100">
-              Questions Fréquemment Posées
+              Questions <span className="text-gray-900 dark:text-gray-100 font-medium">Fréquentes</span>
             </h1>
-            <div className="h-px w-20 bg-gray-300 mb-6"></div>
+            <div className="h-px w-20 bg-blue-500 mb-6"></div>
             <p className="text-gray-600 dark:text-gray-300 text-sm">
-              Retrouvez les réponses aux questions les plus fréquentes
-              concernant nos services.
+              Retrouvez les réponses aux questions les plus fréquemment posées
+              sur nos services.
             </p>
           </div>
 
-          <Card className="border-0 shadow-sm bg-white dark:bg-gray-800 overflow-hidden p-6">
-            <Accordion type="single" collapsible className="space-y-4">
-              {[...Array(6)].map((_, i) => (
-                <AccordionItem
-                  key={i}
-                  value={`item-${i}`}
-                  className="border-b border-gray-200 dark:border-gray-700 pb-2"
-                >
-                  <AccordionTrigger className="text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 text-sm font-medium transition-colors duration-300">
-                    Chargement des questions...
-                  </AccordionTrigger>
-                  <AccordionContent className="text-gray-600 dark:text-gray-400 text-sm pt-2">
-                    Chargement des réponses...
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </Card>
+          <div className="space-y-4">
+            <Card className="border-0 shadow-sm bg-white dark:bg-gray-800 overflow-hidden">
+              <div className="p-6">
+                <p className="text-center text-gray-500 dark:text-gray-400">
+                  Chargement des questions...
+                </p>
+              </div>
+            </Card>
+          </div>
         </main>
         <FooterSection />
       </>
@@ -113,56 +114,65 @@ export default function FAQContent() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <main className="max-w-3xl mx-auto px-6 py-12">
+      <main className="max-w-4xl mx-auto px-6 py-12 pt-32">
         <motion.div
           className="mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-2xl font-light mb-2 text-gray-900 dark:text-gray-100">
-            Questions Fréquemment Posées
+            Questions <span className="text-gray-900 dark:text-gray-100 font-medium">Fréquentes</span>
           </h1>
-          <div className="h-px w-20 bg-gray-300 mb-6"></div>
+          <div className="h-px w-20 bg-blue-500 mb-6"></div>
           <p className="text-gray-600 dark:text-gray-300 text-sm">
-            Retrouvez les réponses aux questions les plus fréquentes concernant
+            Retrouvez les réponses aux questions les plus fréquemment posées sur
             nos services.
           </p>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          className="space-y-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <Card className="border-0 shadow-sm bg-white dark:bg-gray-800 overflow-hidden p-6">
-            <Accordion type="single" collapsible className="space-y-4">
+          <Card className="border-0 shadow-sm bg-white dark:bg-gray-800 overflow-hidden">
+            <Accordion type="single" collapsible className="w-full">
               {faqItems.map((item, index) => (
-                <motion.div
-                  key={`faq-${index}`}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                  whileHover={{ y: -2 }}
+                <AccordionItem
+                  key={index}
+                  value={`item-${index}`}
+                  className="border-b border-gray-100 dark:border-gray-700 last:border-0"
                 >
-                  <AccordionItem
-                    value={`item-${index + 1}`}
-                    className="border-b border-gray-200 dark:border-gray-700 pb-2"
-                  >
-                    <AccordionTrigger className="text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 text-sm font-medium transition-colors duration-300">
-                      {item.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-gray-600 dark:text-gray-400 text-sm pt-2">
-                      {item.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                </motion.div>
+                  <AccordionTrigger className="text-left font-medium text-gray-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300 py-4 px-6">
+                    {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600 dark:text-gray-300 px-6 pb-4">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
               ))}
             </Accordion>
           </Card>
+
+          <motion.div
+            className="mt-12 text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              Vous avez d&apos;autres questions ? N&apos;hésitez pas à nous
+              contacter.
+            </p>
+            <a
+              href="/contact"
+              className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-300"
+            >
+              Contactez-nous
+            </a>
+          </motion.div>
         </motion.div>
       </main>
       <FooterSection />

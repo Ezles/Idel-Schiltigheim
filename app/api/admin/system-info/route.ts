@@ -5,7 +5,6 @@ import os from "os";
 
 export async function GET(request: NextRequest) {
   try {
-    // Vérifier l'authentification admin
     const token = request.cookies.get("admin_token")?.value;
 
     if (!token) {
@@ -21,7 +20,6 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Récupérer les informations système
     const uptime = formatUptime(os.uptime());
     const platform = os.platform();
     const memory = {
@@ -30,10 +28,8 @@ export async function GET(request: NextRequest) {
       usage: Math.round((1 - os.freemem() / os.totalmem()) * 100) + "%",
     };
 
-    // Récupérer la version de Next.js depuis package.json
     const nextVersion = process.env.NEXT_PUBLIC_NEXT_VERSION || "15.0.3";
 
-    // Informations sur la base de données
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
     const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
 
@@ -75,7 +71,6 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// Fonction pour formater le temps d'activité
 function formatUptime(seconds: number): string {
   const days = Math.floor(seconds / (3600 * 24));
   const hours = Math.floor((seconds % (3600 * 24)) / 3600);
@@ -93,7 +88,6 @@ function formatUptime(seconds: number): string {
   return parts.join(", ");
 }
 
-// Fonction pour formater les octets
 function formatBytes(bytes: number): string {
   if (bytes === 0) return "0 Bytes";
 

@@ -5,7 +5,6 @@ export async function GET() {
   try {
     console.log("Vérification d'authentification admin...");
 
-    // Utiliser la nouvelle fonction getAdminUserFromToken qui récupère directement le token des cookies
     const user = await getAdminUserFromToken();
     console.log("Résultat de la vérification du token:", !!user);
 
@@ -16,13 +15,11 @@ export async function GET() {
 
     console.log("Utilisateur authentifié:", user.username);
 
-    // Retourner les informations de l'utilisateur
     const response = NextResponse.json({
       username: user.username,
       role: user.role,
     });
 
-    // Ajouter des en-têtes pour éviter la mise en cache
     response.headers.set("Cache-Control", "no-store, max-age=0");
     response.headers.set("Pragma", "no-cache");
     response.headers.set("Expires", "0");
