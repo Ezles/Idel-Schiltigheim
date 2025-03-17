@@ -13,7 +13,7 @@ export default function LoginPage() {
               <div className="relative w-28 h-28">
                 <Image
                   src="/images/logo_cabinet_schiltigheim.png"
-                  alt="Logo Cabinet Infirmier Schiltigheim"
+                  alt="Logo Cabinet Infirmier Marina RIVIÈRE"
                   fill
                   className="object-contain p-1"
                   priority
@@ -32,7 +32,7 @@ export default function LoginPage() {
         </div>
 
         <div className="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
-          Cabinet Infirmier de Schiltigheim — Espace sécurisé
+          Cabinet Infirmier Marina RIVIÈRE — Espace sécurisé
         </div>
       </div>
     </div>

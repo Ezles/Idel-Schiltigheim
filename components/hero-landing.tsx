@@ -21,11 +21,12 @@ const HeroLanding = () => {
           <div className="flex flex-row items-center justify-center md:justify-start gap-3">
             <div>
               <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-                Cabinet Infirmier de Schiltigheim
+                Cabinet Infirmier Marina RIVIÈRE
               </h1>
               <p className="text-gray-600 dark:text-gray-300 text-lg mb-8">
-                Des soins infirmiers professionnels et attentionnés, à domicile ou
-                au cabinet. Notre équipe est à votre service 7j/7.
+                Des soins infirmiers professionnels et attentionnés, à domicile
+                ou au cabinet. Notre équipe est à votre service du lundi au
+                dimanche, weekends et jours fériés inclus, de 6h à 18h30.
               </p>
             </div>
           </div>
@@ -80,11 +81,12 @@ const HeroLanding = () => {
         <div className="flex flex-row items-center justify-center md:justify-start gap-3">
           <div>
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              Cabinet Infirmier de Schiltigheim
+              Cabinet Infirmier Marina RIVIÈRE
             </h1>
             <p className="text-gray-600 dark:text-gray-300 text-lg mb-8">
               Des soins infirmiers professionnels et attentionnés, à domicile ou
-              au cabinet. Notre équipe est à votre service 7j/7.
+              au cabinet. Notre équipe est à votre service du lundi au dimanche,
+              weekends et jours fériés inclus, de 6h à 18h30.
             </p>
           </div>
         </div>

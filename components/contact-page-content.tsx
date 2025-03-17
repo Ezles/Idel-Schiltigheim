@@ -7,6 +7,7 @@ import {
   MapPinIcon,
   PaperAirplaneIcon,
   PhoneIcon,
+  XCircleIcon,
 } from "@heroicons/react/24/outline";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
@@ -14,8 +15,6 @@ import FooterSection from "./footer-section";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import { Toaster } from "./ui/toaster";
-import { toast } from "./ui/use-toast";
 
 interface FormData {
   name: string;
@@ -35,8 +34,10 @@ export default function ContactPageContent() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  const [showOverlay, setShowOverlay] = useState(false);
   const [showSuccessOverlay, setShowSuccessOverlay] = useState(false);
+  const [showErrorOverlay, setShowErrorOverlay] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -51,6 +52,7 @@ export default function ContactPageContent() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setShowOverlay(true);
 
     try {
       const response = await fetch("/api/send-email", {
@@ -76,27 +78,32 @@ export default function ContactPageContent() {
         message: "",
       });
 
-      toast({
-        title: "Message envoyé !",
-        description: "Nous vous répondrons dans les plus brefs délais.",
-      });
+      setTimeout(() => {
+        setShowOverlay(false);
+        setShowSuccessOverlay(false);
+      }, 3000);
     } catch (error) {
       console.error("Erreur lors de l'envoi du formulaire:", error);
-      toast({
-        variant: "destructive",
-        title: "Erreur",
-        description:
-          error instanceof Error
-            ? error.message
-            : "Une erreur est survenue. Veuillez réessayer.",
-      });
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "Une erreur est survenue. Veuillez réessayer."
+      );
+      setShowErrorOverlay(true);
+
+      setTimeout(() => {
+        setShowOverlay(false);
+        setShowErrorOverlay(false);
+      }, 3000);
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleCloseOverlay = () => {
+    setShowOverlay(false);
     setShowSuccessOverlay(false);
+    setShowErrorOverlay(false);
   };
 
   return (
@@ -104,7 +111,7 @@ export default function ContactPageContent() {
       <Navbar />
       <main className="max-w-7xl mx-auto px-6 py-12 pt-28 md:pt-32 sm:px-12 lg:px-16 relative">
         <AnimatePresence>
-          {isSubmitting && (
+          {showOverlay && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -120,7 +127,7 @@ export default function ContactPageContent() {
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="text-center">
-                  {!showSuccessOverlay ? (
+                  {!showSuccessOverlay && !showErrorOverlay ? (
                     <>
                       <div className="flex justify-center mb-4">
                         <div className="relative">
@@ -143,7 +150,7 @@ export default function ContactPageContent() {
                         </div>
                       </div>
                     </>
-                  ) : (
+                  ) : showSuccessOverlay ? (
                     <>
                       <div className="flex justify-center mb-4">
                         <div className="relative">
@@ -161,6 +168,27 @@ export default function ContactPageContent() {
                       <Button
                         onClick={handleCloseOverlay}
                         className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white rounded-md shadow-md hover:shadow-lg transition-all duration-300"
+                      >
+                        Fermer
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex justify-center mb-4">
+                        <div className="relative">
+                          <XCircleIcon className="h-16 w-16 text-red-500" />
+                          <div className="absolute inset-0 w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full -z-10" />
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+                        Erreur
+                      </h3>
+                      <p className="text-gray-600 dark:text-gray-300 mb-4">
+                        {errorMessage}
+                      </p>
+                      <Button
+                        onClick={handleCloseOverlay}
+                        className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white rounded-md shadow-md hover:shadow-lg transition-all duration-300"
                       >
                         Fermer
                       </Button>
@@ -315,7 +343,8 @@ export default function ContactPageContent() {
                     07 66 72 07 66
                   </p>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                    Du lundi au vendredi, 8h-19h
+                    Du lundi au dimanche, weekends et jours fériés inclus, de 6h
+                    à 18h30
                   </p>
                 </div>
               </div>
@@ -346,7 +375,7 @@ export default function ContactPageContent() {
                     Adresse
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 mt-1">
-                    Cabinet Infirmier de Schiltigheim
+                    Cabinet Infirmier Marina RIVIÈRE
                     <br />
                     130 route de Bischwiller
                     <br />
@@ -363,26 +392,18 @@ export default function ContactPageContent() {
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span className="text-gray-600 dark:text-gray-300">
-                    Lundi - Vendredi
+                    Tous les jours
                   </span>
                   <span className="text-gray-800 dark:text-gray-200 font-medium">
-                    8h - 19h
+                    6h - 18h30
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600 dark:text-gray-300">
-                    Samedi
+                    Weekends et jours fériés
                   </span>
                   <span className="text-gray-800 dark:text-gray-200 font-medium">
-                    9h - 17h
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600 dark:text-gray-300">
-                    Dimanche
-                  </span>
-                  <span className="text-gray-800 dark:text-gray-200 font-medium">
-                    Fermé
+                    Inclus
                   </span>
                 </div>
               </div>
@@ -390,7 +411,6 @@ export default function ContactPageContent() {
           </motion.div>
         </div>
       </main>
-      <Toaster />
       <FooterSection />
     </>
   );

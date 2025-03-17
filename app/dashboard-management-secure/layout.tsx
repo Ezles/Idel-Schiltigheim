@@ -4,9 +4,9 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Espace Administration | Cabinet Infirmier de Schiltigheim",
+  title: "Espace Administration | Cabinet Infirmier Marina RIVIÈRE",
   description:
-    "Espace d'administration sécurisé du Cabinet Infirmier de Schiltigheim. Réservé au personnel autorisé.",
+    "Espace d'administration sécurisé du Cabinet Infirmier Marina RIVIÈRE. Réservé au personnel autorisé.",
   robots: {
     index: false,
     follow: false,

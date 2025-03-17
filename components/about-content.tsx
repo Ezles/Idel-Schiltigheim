@@ -37,14 +37,14 @@ export default function AboutContent() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
                 <div className="p-8">
                   <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                    Fondé en 2015, notre cabinet infirmier situé à
-                    Schiltigheim est composé d&apos;une équipe de
-                    professionnels qualifiés et passionnés par leur métier.
+                    Fondé en 2015, notre cabinet infirmier situé à Schiltigheim
+                    est composé d&apos;une équipe de professionnels qualifiés et
+                    passionnés par leur métier.
                   </p>
                   <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
                     Nous intervenons aussi bien à notre cabinet qu&apos;à
-                    domicile pour vous offrir des soins de qualité dans un
-                    cadre rassurant et bienveillant.
+                    domicile pour vous offrir des soins de qualité dans un cadre
+                    rassurant et bienveillant.
                   </p>
                   <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                     Notre priorité est votre bien-être et votre santé. Nous
@@ -80,11 +80,14 @@ export default function AboutContent() {
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           <h2 className="text-2xl font-light mb-2 text-gray-900 dark:text-gray-100">
-            Notre <span className="text-gray-900 dark:text-gray-100 font-medium">Équipe</span>
+            Notre{" "}
+            <span className="text-gray-900 dark:text-gray-100 font-medium">
+              Équipe
+            </span>
           </h2>
           <div className="w-16 h-0.5 bg-blue-500 mb-8"></div>
 
-          <div className="flex justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center">
             <Card className="overflow-hidden border-gray-200 dark:border-gray-800 hover:shadow-md transition-shadow duration-300 max-w-xs">
               <CardContent className="p-6 text-center">
                 <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 flex items-center justify-center">
@@ -104,10 +107,37 @@ export default function AboutContent() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100 mb-1">
-                  Marina Rivière
+                  Marina RIVIÈRE
                 </h3>
                 <p className="text-gray-500 dark:text-gray-400 text-sm">
-                  Chef
+                  Titulaire
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="overflow-hidden border-gray-200 dark:border-gray-800 hover:shadow-md transition-shadow duration-300 max-w-xs">
+              <CardContent className="p-6 text-center">
+                <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 flex items-center justify-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-10 h-10 text-gray-400 dark:text-gray-500"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100 mb-1">
+                  Evelyne BAPTIS
+                </h3>
+                <p className="text-gray-500 dark:text-gray-400 text-sm">
+                  Remplaçante
                 </p>
               </CardContent>
             </Card>
@@ -120,7 +150,10 @@ export default function AboutContent() {
           transition={{ delay: 0.4, duration: 0.5 }}
         >
           <h2 className="text-2xl font-light mb-2 text-gray-900 dark:text-gray-100">
-            Nos <span className="text-gray-900 dark:text-gray-100 font-medium">Valeurs</span>
+            Nos{" "}
+            <span className="text-gray-900 dark:text-gray-100 font-medium">
+              Valeurs
+            </span>
           </h2>
           <div className="w-16 h-0.5 bg-blue-500 mb-8"></div>
 
@@ -131,8 +164,8 @@ export default function AboutContent() {
                   Professionnalisme
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 text-sm">
-                  Nous nous engageons à fournir des soins de haute qualité,
-                  en respectant les protocoles et en nous tenant informés des
+                  Nous nous engageons à fournir des soins de haute qualité, en
+                  respectant les protocoles et en nous tenant informés des
                   dernières avancées médicales.
                 </p>
               </CardContent>
@@ -145,8 +178,8 @@ export default function AboutContent() {
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 text-sm">
                   Chaque patient est unique. Nous prenons le temps
-                  d&apos;écouter, de comprendre et d&apos;adapter notre
-                  approche à vos besoins spécifiques.
+                  d&apos;écouter, de comprendre et d&apos;adapter notre approche
+                  à vos besoins spécifiques.
                 </p>
               </CardContent>
             </Card>
@@ -157,9 +190,10 @@ export default function AboutContent() {
                   Disponibilité
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 text-sm">
-                  Notre équipe est disponible 7j/7 pour répondre à vos
-                  besoins de soins, avec des interventions à domicile
-                  adaptées à votre emploi du temps.
+                  Notre équipe est disponible du lundi au dimanche, weekends et
+                  jours fériés inclus, de 6h à 18h30 pour répondre à vos besoins
+                  de soins, avec des interventions à domicile adaptées à votre
+                  emploi du temps.
                 </p>
               </CardContent>
             </Card>

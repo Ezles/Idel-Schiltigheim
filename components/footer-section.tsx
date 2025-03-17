@@ -1,12 +1,17 @@
 "use client";
 
+import {
+  ClockIcon,
+  EnvelopeIcon,
+  MapPinIcon,
+  PhoneIcon,
+} from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { resetCookiePreferences } from "./cookie-consent";
 import { Button } from "./ui/button";
-import { MapPinIcon, PhoneIcon, EnvelopeIcon, ClockIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
 
 const FooterSection = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -27,7 +32,7 @@ const FooterSection = () => {
               <div className="flex items-center">
                 <Image
                   src="/images/logo_cabinet_schiltigheim.png"
-                  alt="Cabinet Infirmier de Schiltigheim"
+                  alt="Cabinet Infirmier Marina RIVIÈRE"
                   width={50}
                   height={50}
                   className="mr-3"
@@ -41,12 +46,12 @@ const FooterSection = () => {
                   </p>
                 </div>
               </div>
-              
+
               <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                Des soins infirmiers professionnels et attentionnés, à domicile ou au cabinet. 
-                Notre équipe est à votre service 7j/7.
+                Des soins infirmiers professionnels et attentionnés, à domicile
+                ou au cabinet. Notre équipe est à votre service 7j/7.
               </p>
-              
+
               <div className="space-y-2">
                 <div className="flex items-start">
                   <MapPinIcon className="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" />
@@ -54,30 +59,37 @@ const FooterSection = () => {
                     130 route de Bischwiller, 67300 Schiltigheim
                   </p>
                 </div>
-                
+
                 <div className="flex items-center">
                   <PhoneIcon className="h-5 w-5 text-blue-500 mr-2 flex-shrink-0" />
-                  <Link href="tel:+33766720766" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300">
+                  <Link
+                    href="tel:+33766720766"
+                    className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300"
+                  >
                     07 66 72 07 66
                   </Link>
                 </div>
-                
+
                 <div className="flex items-center">
                   <EnvelopeIcon className="h-5 w-5 text-blue-500 mr-2 flex-shrink-0" />
-                  <Link href="mailto:contact@cabinet-mriviere.fr" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300">
+                  <Link
+                    href="mailto:contact@cabinet-mriviere.fr"
+                    className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300"
+                  >
                     contact@cabinet-mriviere.fr
                   </Link>
                 </div>
-                
+
                 <div className="flex items-start">
                   <ClockIcon className="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" />
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Lun-Ven: 8h-19h | Sam: 9h-17h
+                    Du lundi au dimanche, weekends et jours fériés inclus, de 6h
+                    à 18h30
                   </p>
                 </div>
               </div>
             </div>
-            
+
             {/* Navigation */}
             <div className="md:col-span-3 md:col-start-7">
               <h3 className="text-md font-semibold text-gray-800 dark:text-gray-200 mb-4 pb-1 border-b border-gray-200 dark:border-gray-800">
@@ -122,7 +134,7 @@ const FooterSection = () => {
                 </li>
               </ul>
             </div>
-            
+
             {/* Légal */}
             <div className="md:col-span-3">
               <h3 className="text-md font-semibold text-gray-800 dark:text-gray-200 mb-4 pb-1 border-b border-gray-200 dark:border-gray-800">
@@ -159,12 +171,13 @@ const FooterSection = () => {
               </ul>
             </div>
           </div>
-          
+
           {/* Séparateur */}
           <div className="border-t border-gray-200 dark:border-gray-800 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-gray-500 dark:text-gray-500 text-sm text-center">
-                © {currentYear} Cabinet Infirmier de Schiltigheim. Tous droits réservés.
+                © {currentYear} Cabinet Infirmier Marina RIVIÈRE. Tous droits
+                réservés.
               </p>
               <Button
                 variant="ghost"
@@ -191,7 +204,7 @@ const FooterSection = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
           {/* Logo et informations */}
-          <motion.div 
+          <motion.div
             className="md:col-span-5 space-y-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -200,7 +213,7 @@ const FooterSection = () => {
             <div className="flex items-center">
               <Image
                 src="/images/logo_cabinet_schiltigheim.png"
-                alt="Cabinet Infirmier de Schiltigheim"
+                alt="Cabinet Infirmier Marina RIVIÈRE"
                 width={50}
                 height={50}
                 className="mr-3"
@@ -214,12 +227,12 @@ const FooterSection = () => {
                 </p>
               </div>
             </div>
-            
+
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Des soins infirmiers professionnels et attentionnés, à domicile ou au cabinet. 
-              Notre équipe est à votre service 7j/7.
+              Des soins infirmiers professionnels et attentionnés, à domicile ou
+              au cabinet. Notre équipe est à votre service 7j/7.
             </p>
-            
+
             <div className="space-y-2">
               <div className="flex items-start">
                 <MapPinIcon className="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" />
@@ -227,32 +240,39 @@ const FooterSection = () => {
                   130 route de Bischwiller, 67300 Schiltigheim
                 </p>
               </div>
-              
+
               <div className="flex items-center">
                 <PhoneIcon className="h-5 w-5 text-blue-500 mr-2 flex-shrink-0" />
-                <Link href="tel:+33766720766" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300">
+                <Link
+                  href="tel:+33766720766"
+                  className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300"
+                >
                   07 66 72 07 66
                 </Link>
               </div>
-              
+
               <div className="flex items-center">
                 <EnvelopeIcon className="h-5 w-5 text-blue-500 mr-2 flex-shrink-0" />
-                <Link href="mailto:contact@cabinet-mriviere.fr" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300">
+                <Link
+                  href="mailto:contact@cabinet-mriviere.fr"
+                  className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300"
+                >
                   contact@cabinet-mriviere.fr
                 </Link>
               </div>
-              
+
               <div className="flex items-start">
                 <ClockIcon className="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" />
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Lun-Ven: 8h-19h | Sam: 9h-17h
+                  Du lundi au dimanche, weekends et jours fériés inclus, de 6h à
+                  18h30
                 </p>
               </div>
             </div>
           </motion.div>
-          
+
           {/* Navigation */}
-          <motion.div 
+          <motion.div
             className="md:col-span-3 md:col-start-7"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -300,9 +320,9 @@ const FooterSection = () => {
               </li>
             </ul>
           </motion.div>
-          
+
           {/* Légal */}
-          <motion.div 
+          <motion.div
             className="md:col-span-3"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -342,9 +362,9 @@ const FooterSection = () => {
             </ul>
           </motion.div>
         </div>
-        
+
         {/* Séparateur */}
-        <motion.div 
+        <motion.div
           className="border-t border-gray-200 dark:border-gray-800 pt-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -352,7 +372,8 @@ const FooterSection = () => {
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-500 dark:text-gray-500 text-sm text-center">
-              © {currentYear} Cabinet Infirmier de Schiltigheim. Tous droits réservés.
+              © {currentYear} Cabinet Infirmier Marina RIVIÈRE. Tous droits
+              réservés.
             </p>
             <div className="hover:scale-105 transition-transform duration-200">
               <Button

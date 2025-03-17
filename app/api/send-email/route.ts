@@ -152,8 +152,9 @@ export async function POST(request: Request) {
                 <a href="mailto:${email}" class="button">Répondre</a>
               </div>
               <div class="footer">
-                <p>© ${new Date().getFullYear()} Cabinet Infirmier de Schiltigheim - RIVIÈRE SANTÉ</p>
+                <p>© ${new Date().getFullYear()} Cabinet Infirmier Marina RIVIÈRE</p>
                 <p>130 route de Bischwiller, 67300 Schiltigheim</p>
+                <p>Du lundi au dimanche, weekends et jours fériés inclus, de 6h à 18h30</p>
                 <p>Tél: 07 66 72 07 66</p>
               </div>
             </div>

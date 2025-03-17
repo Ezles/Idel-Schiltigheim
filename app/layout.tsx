@@ -4,21 +4,21 @@ import { Inter } from "next/font/google";
 import AnalyticsTracker from "@/components/analytics-tracker";
 import CookieConsent from "@/components/cookie-consent";
 import SchemaOrg from "@/components/schema-org";
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 import Providers from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Cabinet Infirmier de Schiltigheim - Soins à domicile",
+  title: "Cabinet Infirmier Marina RIVIÈRE - Soins à domicile",
   description:
-    "Cabinet infirmier à Schiltigheim proposant des soins à domicile de qualité. Prise de rendez-vous facile, équipe professionnelle et disponible 7j/7.",
+    "Cabinet infirmier Marina RIVIÈRE à Schiltigheim proposant des soins à domicile de qualité. Équipe professionnelle disponible du lundi au dimanche, weekends et jours fériés inclus, de 6h à 18h30.",
   keywords:
     "infirmier, soins à domicile, Schiltigheim, cabinet infirmier, soins infirmiers, prise de sang, pansements, injections",
-  authors: [{ name: "Cabinet Infirmier de Schiltigheim" }],
-  creator: "Cabinet Infirmier de Schiltigheim",
-  publisher: "Cabinet Infirmier de Schiltigheim",
+  authors: [{ name: "Cabinet Infirmier Marina RIVIÈRE" }],
+  creator: "Cabinet Infirmier Marina RIVIÈRE",
+  publisher: "Cabinet Infirmier Marina RIVIÈRE",
   formatDetection: {
     telephone: true,
     email: true,
@@ -29,17 +29,17 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Cabinet Infirmier de Schiltigheim - Soins à domicile",
+    title: "Cabinet Infirmier Marina RIVIÈRE - Soins à domicile",
     description:
-      "Cabinet infirmier à Schiltigheim proposant des soins à domicile de qualité. Prise de rendez-vous facile, équipe professionnelle et disponible 7j/7.",
+      "Cabinet infirmier Marina RIVIÈRE à Schiltigheim proposant des soins à domicile de qualité. Équipe professionnelle disponible du lundi au dimanche, weekends et jours fériés inclus, de 6h à 18h30.",
     url: "https://cabinet-mriviere.fr",
-    siteName: "Cabinet Infirmier de Schiltigheim",
+    siteName: "Cabinet Infirmier Marina RIVIÈRE",
     images: [
       {
         url: "/images/logo_cabinet_schiltigheim.png",
         width: 800,
         height: 600,
-        alt: "Logo Cabinet Infirmier de Schiltigheim",
+        alt: "Logo Cabinet Infirmier Marina RIVIÈRE",
       },
     ],
     locale: "fr_FR",

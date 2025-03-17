@@ -7,16 +7,16 @@ import Prestations from "@/components/prestation-form";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Cabinet Infirmier de Schiltigheim - Soins infirmiers à domicile",
+  title: "Cabinet Infirmier Marina RIVIERE - Soins infirmiers à domicile",
   description:
-    "Cabinet infirmier à Schiltigheim proposant des soins à domicile de qualité. Équipe professionnelle disponible 7j/7 pour tous types de soins infirmiers.",
+    "Cabinet infirmier Marina RIVIERE à Schiltigheim proposant des soins à domicile de qualité. Équipe professionnelle disponible du lundi au dimanche, weekends et jours fériés inclus, de 6h à 18h30.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Cabinet Infirmier de Schiltigheim - Soins infirmiers à domicile",
+    title: "Cabinet Infirmier Marina RIVIERE - Soins infirmiers à domicile",
     description:
-      "Cabinet infirmier à Schiltigheim proposant des soins à domicile de qualité. Équipe professionnelle disponible 7j/7 pour tous types de soins infirmiers.",
+      "Cabinet infirmier Marina RIVIERE à Schiltigheim proposant des soins à domicile de qualité. Équipe professionnelle disponible du lundi au dimanche, weekends et jours fériés inclus, de 6h à 18h30.",
   },
 };
 

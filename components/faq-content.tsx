@@ -28,7 +28,7 @@ export default function FAQContent() {
     {
       question: "Quels sont vos horaires d'ouverture ?",
       answer:
-        "Notre cabinet est ouvert du lundi au vendredi de 8h à 19h et le samedi de 9h à 17h. Pour les soins à domicile, nous intervenons 7j/7, y compris les jours fériés, selon les besoins des patients.",
+        "Notre cabinet est ouvert du lundi au dimanche, weekends et jours fériés inclus, de 6h à 18h30. Nos infirmiers sont disponibles pour des soins à domicile sur ces mêmes horaires.",
     },
     {
       question: "Quels types de soins proposez-vous ?",
@@ -49,7 +49,7 @@ export default function FAQContent() {
       question:
         "Quelle est la zone géographique couverte pour les soins à domicile ?",
       answer:
-        "Nous intervenons principalement à Schiltigheim et dans les communes environnantes : Strasbourg, Bischheim, Hoenheim, Souffelweyersheim, Mundolsheim et Reichstett. Pour toute demande en dehors de cette zone, n'hésitez pas à nous contacter pour vérifier notre disponibilité.",
+        "Nous intervenons principalement à Schiltigheim et dans les communes environnantes : Bischheim, Hoenheim. Pour toute demande en dehors de cette zone, n'hésitez pas à nous contacter pour vérifier notre disponibilité.",
     },
     {
       question: "Comment se déroule la première visite à domicile ?",
@@ -83,7 +83,10 @@ export default function FAQContent() {
         <main className="max-w-4xl mx-auto px-6 py-12 pt-32">
           <div className="mb-12">
             <h1 className="text-2xl font-light mb-2 text-gray-900 dark:text-gray-100">
-              Questions <span className="text-gray-900 dark:text-gray-100 font-medium">Fréquentes</span>
+              Questions{" "}
+              <span className="text-gray-900 dark:text-gray-100 font-medium">
+                Fréquentes
+              </span>
             </h1>
             <div className="h-px w-20 bg-blue-500 mb-6"></div>
             <p className="text-gray-600 dark:text-gray-300 text-sm">
@@ -122,7 +125,10 @@ export default function FAQContent() {
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-2xl font-light mb-2 text-gray-900 dark:text-gray-100">
-            Questions <span className="text-gray-900 dark:text-gray-100 font-medium">Fréquentes</span>
+            Questions{" "}
+            <span className="text-gray-900 dark:text-gray-100 font-medium">
+              Fréquentes
+            </span>
           </h1>
           <div className="h-px w-20 bg-blue-500 mb-6"></div>
           <p className="text-gray-600 dark:text-gray-300 text-sm">
