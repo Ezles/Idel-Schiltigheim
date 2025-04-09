@@ -46,15 +46,15 @@ const Navbar = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <Link href="/" className="flex items-center group">
-              <motion.img
-                src="/images/logo_cabinet_schiltigheim.png"
-                alt="Logo Cabinet Infirmier Schiltigheim"
-                className={`transition-all duration-500 group-hover:scale-105 ${
-                  scrolled ? "h-8 w-auto sm:h-9" : "h-9 w-auto sm:h-10"
+              <div 
+                className={`flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full transition-all duration-500 group-hover:scale-105 ${
+                  scrolled ? "h-8 w-8 sm:h-9 sm:w-9" : "h-9 w-9 sm:h-10 sm:w-10"
                 }`}
-                whileHover={{ rotate: [0, -5, 5, 0] }}
-                transition={{ duration: 0.5 }}
-              />
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+              </div>
               <span className={`ml-3 font-semibold text-gray-800 dark:text-gray-100 whitespace-nowrap transition-all duration-500 ${
                 scrolled ? "text-base sm:text-lg" : "text-lg sm:text-xl"
               }`}>

@@ -7,7 +7,6 @@ import {
   PhoneIcon,
 } from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { resetCookiePreferences } from "./cookie-consent";
@@ -34,13 +33,11 @@ const FooterSection = () => {
             <div className="md:col-span-5 space-y-6">
               <Link href="/" className="inline-block">
                 <div className="flex items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-md transition-transform duration-300 hover:shadow-lg">
-                  <Image
-                    src="/images/logo_cabinet_schiltigheim.png"
-                    alt="Cabinet Infirmier Marina RIVIÈRE"
-                    width={60}
-                    height={60}
-                    className="mr-4"
-                  />
+                  <div className="flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full w-12 h-12 mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                  </div>
                   <div>
                     <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100">
                       Cabinet Infirmier
@@ -234,13 +231,11 @@ const FooterSection = () => {
                 className="flex items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-md transition-transform duration-300 hover:shadow-lg"
                 whileHover={{ scale: 1.03 }}
               >
-                <Image
-                  src="/images/logo_cabinet_schiltigheim.png"
-                  alt="Cabinet Infirmier Marina RIVIÈRE"
-                  width={60}
-                  height={60}
-                  className="mr-4"
-                />
+                <div className="flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full w-12 h-12 mr-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  </svg>
+                </div>
                 <div>
                   <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100">
                     Cabinet Infirmier

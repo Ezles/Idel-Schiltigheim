@@ -206,15 +206,6 @@ const ContactSection = () => {
                     <span>Appeler maintenant</span>
                   </Button>
                 </Link>
-                <Link href="/contact">
-                  <Button
-                    variant="outline"
-                    className="w-full sm:w-auto px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-5 text-white border-white border-2 hover:bg-white hover:text-blue-600 transition-all duration-300 rounded-lg sm:rounded-xl flex items-center justify-center gap-1.5 sm:gap-2 text-sm sm:text-base font-medium hover:scale-105"
-                  >
-                    <EnvelopeIcon className="h-4 w-4 sm:h-5 sm:w-5" />
-                    <span>Formulaire de contact</span>
-                  </Button>
-                </Link>
               </motion.div>
             </div>
           </motion.div>
