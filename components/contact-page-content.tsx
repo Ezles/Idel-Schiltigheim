@@ -13,7 +13,7 @@ import {
   CalendarIcon,
 } from "@heroicons/react/24/outline";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import FooterSection from "./footer-section";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -26,6 +26,79 @@ interface FormData {
   subject: string;
   message: string;
 }
+
+const GoogleMap = () => {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [mapError, setMapError] = useState(false);
+
+  useEffect(() => {
+    const checkIframeLoaded = () => {
+      if (iframeRef.current) {
+        try {
+          const iframeDoc = iframeRef.current.contentDocument || 
+                          (iframeRef.current.contentWindow && iframeRef.current.contentWindow.document);
+          if (!iframeDoc || (iframeDoc.body && iframeDoc.body.innerHTML === '')) {
+            setMapError(true);
+          }
+        } catch {
+          // Une erreur cross-origin se produira si la carte est chargée correctement
+          // donc c'est normal, on ne fait rien
+        }
+      }
+    };
+
+    const timer = setTimeout(checkIframeLoaded, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div className="w-full h-52 relative border-t border-gray-200 dark:border-gray-700">
+      {!mapError ? (
+        <iframe 
+          ref={iframeRef}
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2639.7352918780894!2d7.735992399999999!3d48.620173499999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4796b9db2ffe037d%3A0xd7d9fc66fa3c00e8!2s130%20Rte%20de%20Bischwiller%2C%2067300%20Schiltigheim!5e0!3m2!1sfr!2sfr!4v1708380020790!5m2!1sfr!2sfr" 
+          className="w-full h-52 border-0" 
+          loading="lazy"
+          title="Cabinet Infirmier Marina RIVIÈRE - 130 route de Bischwiller, 67300 Schiltigheim"
+          referrerPolicy="no-referrer-when-downgrade"
+          style={{ border: 0 }}
+          allowFullScreen={true}
+          aria-hidden="false"
+          tabIndex={0}
+          onError={() => setMapError(true)}
+        />
+      ) : (
+        <div className="absolute inset-0 bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+          <div className="text-center p-4">
+            <MapPinIcon className="h-8 w-8 text-blue-500 mx-auto mb-2" />
+            <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100 mb-1">Cabinet Infirmier Marina RIVIÈRE</h3>
+            <p className="text-xs text-gray-600 dark:text-gray-300 mb-3">130 route de Bischwiller, 67300 Schiltigheim</p>
+            <a 
+              href="https://www.google.com/maps/place/130+Rte+de+Bischwiller,+67300+Schiltigheim/@48.6201735,7.7359924,17z/"
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="bg-blue-500 text-white text-xs font-medium px-3 py-1.5 rounded shadow-md hover:bg-blue-600 transition-colors"
+            >
+              Voir sur Google Maps
+            </a>
+          </div>
+        </div>
+      )}
+      
+      <div className="absolute bottom-0 right-0 m-3 z-10">
+        <a 
+          href="https://www.google.com/maps/place/130+Rte+de+Bischwiller,+67300+Schiltigheim/@48.6201735,7.7359924,17z/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="bg-white text-blue-600 text-xs font-medium px-2 py-1 rounded shadow-md hover:bg-blue-50 transition-colors"
+        >
+          Agrandir la carte
+        </a>
+      </div>
+    </div>
+  );
+};
 
 export default function ContactPageContent() {
   const [formData, setFormData] = useState<FormData>({
@@ -417,25 +490,7 @@ export default function ContactPageContent() {
               </div>
             </div>
 
-            <div className="w-full h-52 relative border-t border-gray-200 dark:border-gray-700">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2639.7352918780894!2d7.735992399999999!3d48.620173499999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4796b9db2ffe037d%3A0xd7d9fc66fa3c00e8!2s130%20Rte%20de%20Bischwiller%2C%2067300%20Schiltigheim!5e0!3m2!1sfr!2sfr!4v1708380020790!5m2!1sfr!2sfr" 
-                className="w-full h-52 border-0" 
-                allowFullScreen={false}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-              <div className="absolute bottom-0 right-0 m-3">
-                <a 
-                  href="https://goo.gl/maps/ZdqEa4Tiy5vW9wgR7" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="bg-white text-blue-600 text-xs font-medium px-2 py-1 rounded shadow-md hover:bg-blue-50 transition-colors"
-                >
-                  Agrandir la carte
-                </a>
-              </div>
-            </div>
+            <GoogleMap />
           </div>
         </div>
 

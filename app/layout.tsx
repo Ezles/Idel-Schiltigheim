@@ -11,11 +11,11 @@ import Providers from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Cabinet Infirmier Marina RIVIÈRE - Soins à domicile",
+  title: "Cabinet Infirmier Marina RIVIÈRE - Soins à domicile Schiltigheim",
   description:
-    "Cabinet infirmier Marina RIVIÈRE à Schiltigheim proposant des soins à domicile de qualité. Équipe professionnelle disponible du lundi au dimanche, weekends et jours fériés inclus, de 6h à 18h30.",
+    "Cabinet infirmier Marina RIVIÈRE à Schiltigheim proposant des soins infirmiers à domicile de qualité et prélèvements sanguins. Équipe professionnelle disponible 7j/7, weekends et jours fériés inclus, de 6h à 18h30. Secteur Schiltigheim, Bischheim, Hoenheim et Strasbourg Nord.",
   keywords:
-    "infirmier, soins à domicile, Schiltigheim, cabinet infirmier, soins infirmiers, prise de sang, pansements, injections",
+    "infirmier, soins à domicile, Schiltigheim, cabinet infirmier, soins infirmiers, prise de sang, pansements, injections, infirmière Schiltigheim, infirmier Schiltigheim, cabinet infirmier Schiltigheim, soins infirmiers Schiltigheim, soins à domicile Schiltigheim, infirmier 67300, cabinet Marina Rivière, prélèvements sanguins, perfusions, soins des plaies, chimiothérapie à domicile, soin palliatif, diabète, Bischheim, Hoenheim, Strasbourg Nord, bas-rhin, 67",
   authors: [{ name: "Cabinet Infirmier Marina RIVIÈRE" }],
   creator: "Cabinet Infirmier Marina RIVIÈRE",
   publisher: "Cabinet Infirmier Marina RIVIÈRE",
@@ -29,9 +29,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Cabinet Infirmier Marina RIVIÈRE - Soins à domicile",
+    title: "Cabinet Infirmier Marina RIVIÈRE - Soins à domicile Schiltigheim",
     description:
-      "Cabinet infirmier Marina RIVIÈRE à Schiltigheim proposant des soins à domicile de qualité. Équipe professionnelle disponible du lundi au dimanche, weekends et jours fériés inclus, de 6h à 18h30.",
+      "Cabinet infirmier Marina RIVIÈRE à Schiltigheim proposant des soins infirmiers à domicile de qualité et prélèvements sanguins. Équipe professionnelle disponible 7j/7, weekends et jours fériés inclus, de 6h à 18h30. Secteur Schiltigheim, Bischheim, Hoenheim et Strasbourg Nord.",
     url: "https://cabinet-mriviere.fr",
     siteName: "Cabinet Infirmier Marina RIVIÈRE",
     images: [

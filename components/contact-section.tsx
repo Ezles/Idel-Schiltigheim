@@ -1,7 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { EnvelopeIcon, PhoneIcon, MapPinIcon, ClockIcon } from "@heroicons/react/24/outline";
+import { PhoneIcon, MapPinIcon, ClockIcon } from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -25,7 +24,7 @@ const ContactSection = () => {
       icon: <MapPinIcon className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-blue-600 dark:text-blue-400" />,
       title: "Adresse",
       content: "Schiltigheim, Bas-Rhin",
-      link: "https://maps.app.goo.gl/PWhBNS17rkCLAXgeA",
+      link: "https://www.google.com/maps/place/130+Rte+de+Bischwiller,+67300+Schiltigheim/@48.6201735,7.7359924,17z/",
       cta: "Voir la carte"
     },
     {
@@ -81,24 +80,6 @@ const ContactSection = () => {
                       </Link>
                     </div>
                   ))}
-                </div>
-                
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-                  <Link href="tel:+33766720766">
-                    <Button className="w-full sm:w-auto px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-5 bg-white hover:bg-gray-100 text-blue-600 rounded-lg sm:rounded-xl flex items-center justify-center gap-1.5 sm:gap-2 shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base font-medium hover:scale-105">
-                      <PhoneIcon className="h-4 w-4 sm:h-5 sm:w-5" />
-                      <span>Appeler maintenant</span>
-                    </Button>
-                  </Link>
-                  <Link href="/contact">
-                    <Button
-                      variant="outline"
-                      className="w-full sm:w-auto px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-5 text-white border-white border-2 hover:bg-white hover:text-blue-600 transition-all duration-300 rounded-lg sm:rounded-xl flex items-center justify-center gap-1.5 sm:gap-2 text-sm sm:text-base font-medium hover:scale-105"
-                    >
-                      <EnvelopeIcon className="h-4 w-4 sm:h-5 sm:w-5" />
-                      <span>Formulaire de contact</span>
-                    </Button>
-                  </Link>
                 </div>
               </div>
             </div>
@@ -200,12 +181,6 @@ const ContactSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.8 }}
               >
-                <Link href="tel:+33766720766">
-                  <Button className="w-full sm:w-auto px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-5 bg-white hover:bg-gray-100 text-blue-600 rounded-lg sm:rounded-xl flex items-center justify-center gap-1.5 sm:gap-2 shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base font-medium hover:scale-105">
-                    <PhoneIcon className="h-4 w-4 sm:h-5 sm:w-5" />
-                    <span>Appeler maintenant</span>
-                  </Button>
-                </Link>
               </motion.div>
             </div>
           </motion.div>
